@@ -13,3 +13,5 @@
 <!-- Installs go orm done inside the container-->
 
 # go get gorm.io/gorm
+
+# gorm.io/driver/postgres

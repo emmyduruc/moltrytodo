@@ -11,14 +11,15 @@ services:
       - .:/usr/src/app
     command: air ./cmd/main.go -b 0.0.0.0
   db:
-    image: mongo
-    container_name: test-mongo
-    restart: always
-
+    image: postgres:alpine
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
     ports:
-      - 27017:27017
+      - "8001:5432"
     volumes:
-      - mongo-data:/data/db
+      - postgres-db:/var/lib/postgresql/data
+
+volumes:
+  postgres-db:
