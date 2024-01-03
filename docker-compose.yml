@@ -11,15 +11,29 @@ services:
       - .:/usr/src/app
     command: air ./cmd/main.go -b 0.0.0.0
   db:
+    container_name: postgres-local
     image: postgres:alpine
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_HOST=host.docker.internal
     ports:
-      - "8001:5432"
+      - "5432:5432"
     volumes:
       - postgres-db:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
 
 volumes:
   postgres-db:
+  pgadmin-data:

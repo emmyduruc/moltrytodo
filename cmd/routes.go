@@ -10,7 +10,7 @@ func routes(app *fiber.App) {
 		return c.SendString("Hello, My friend lets set up your TODO! 🚀")
 	})
 
-	app.Get("/", handlers.ListUsers)
+	app.Get("/users", handlers.ListUsers)
 
 	app.Post("/users", handlers.CreateUsers)
 
