@@ -24,6 +24,5 @@ func Signup(c *fiber.Ctx) error {
 	}
 	user.Password = string(hash)
 	database.DB.Db.Create(&user)
-
 	return c.Status(201).JSON(user)
 }
