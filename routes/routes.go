@@ -13,8 +13,8 @@ func Routes(app *fiber.App) {
 
 	usersGroup := app.Group("/users")
 
-	usersGroup.Get("/users", controllers.ListUsers)
+	app.Get("/", controllers.ListUsers)
 
-	usersGroup.Post("/users", controllers.CreateUsers)
+	usersGroup.Post("/", controllers.CreateUsers)
 
 }
