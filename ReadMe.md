@@ -40,3 +40,8 @@
 4. port should be 5432
 5. maintainance db should be postgres
 6. "username" & "password" should be same with the one in the docker-compose.yml fle
+
+
+## MIGRATIONS
+install go-migrate
+create migration: migrate create -ext sql -dir db/migrations <migration name>

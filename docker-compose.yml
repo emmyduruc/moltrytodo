@@ -34,6 +34,23 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
 
+  migrate:
+    image: migrate/migrate:v4.15.2
+    profiles: ["tools"]
+    volumes:
+      - ./db/migrations:/migrations
+    entrypoint:
+      [
+        "migrate",
+        "-path",
+        "./db/migrations",
+        "-database",
+        "postgres://postgres:postgres@db:5432/moltrytodo?sslmode=disable",
+      ]
+    command: ["up"]
+
+    restart: on-failure
+
 volumes:
   postgres-db:
   pgadmin-data:
