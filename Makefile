@@ -44,3 +44,6 @@ migrate-create: ## Create a DB migration files e.g `make migrate-create name=mig
 
 shell-db: ## Enter to database console
 	docker compose -f ${DOCKER_COMPOSE_FILE} exec db psql -U postgres -d postgres
+
+tidy: ## Tidy go modules
+	go mod tidy
