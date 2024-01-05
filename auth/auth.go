@@ -4,18 +4,18 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"net/http"
 	"os"
 	"strconv"
 	"strings"
 	"time"
 
+	"github.com/gofiber/fiber/v2"
 	jwt "github.com/golang-jwt/jwt"
 )
 
 func CreateToken(user_id uint32) (string, error) {
 	token := jwt.New(jwt.SigningMethodEdDSA)
-	claims := token.Claims.(jwt.MapClaims)
+	claims, _ := token.Claims.(jwt.MapClaims)
 	claims["authorized"] = true
 	claims["user_id"] = user_id
 	claims["exp"] = time.Now().Add(time.Hour * 1).Unix() //Token expires after 1 hour
@@ -29,8 +29,8 @@ func CreateToken(user_id uint32) (string, error) {
 
 }
 
-func ValidatingToken(r *http.Request) error {
-	tokenString := FetchToken(r)
+func ValidatingToken(ctx *fiber.Ctx) error {
+	tokenString := FetchToken(ctx)
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
@@ -46,22 +46,20 @@ func ValidatingToken(r *http.Request) error {
 	return nil
 }
 
-func FetchToken(r *http.Request) string {
-	keys := r.URL.Query()
-	token := keys.Get("token")
+func FetchToken(ctx *fiber.Ctx) string {
+	token := ctx.Get("Authorization")
 	if token != "" {
-		return token
-	}
-	bearerToken := r.Header.Get("Authorization")
-	if len(strings.Split(bearerToken, " ")) == 2 {
-		return strings.Split(bearerToken, " ")[1]
+		parts := strings.Split(token, " ")
+		if len(parts) == 2 {
+			return parts[1]
+		}
 	}
 	return ""
 }
 
-func ExtractTokenID(r *http.Request) (uint32, error) {
+func ExtractTokenID(ctx *fiber.Ctx) (uint32, error) {
 
-	tokenString := FetchToken(r)
+	tokenString := FetchToken(ctx)
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
