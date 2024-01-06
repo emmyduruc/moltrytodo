@@ -21,8 +21,3 @@ func AuthmiddlewareSetter(ctx *fiber.Ctx) error {
 	}
 	return ctx.Next()
 }
-
-func JSON(ctx *fiber.Ctx, data interface{}) error {
-	ctx.Set("Content-Type", "application/json")
-	return ctx.JSON(data)
-}
