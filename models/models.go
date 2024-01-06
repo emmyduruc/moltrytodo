@@ -12,6 +12,7 @@ type User struct {
 	LastName  string `json:"lastname" gorm:"text;not null;default:null"`
 	Email     string `json:"email" gorm:"text;not null;default:null"`
 	Password  string `json:"password" gorm:"text;not null;default:null"`
+	Avatar    string `json:"avatar" gorm:"text;default:null"`
 	Tasks     []Task `json:"tasks" gorm:"foreignKey:UserID"`
 }
 
