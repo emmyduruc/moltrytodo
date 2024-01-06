@@ -3,6 +3,7 @@ package controllers
 import (
 	"fmt"
 
+	"github.com/emmyduruc/moltrytodo/auth"
 	database "github.com/emmyduruc/moltrytodo/db"
 	"github.com/emmyduruc/moltrytodo/models"
 	"github.com/emmyduruc/moltrytodo/utils"
@@ -51,8 +52,22 @@ func Login(c *fiber.Ctx) error {
 		})
 	}
 
+	acessToken, refreshToken, err := auth.CreateToken(dbUser.ID)
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"message": "error generating token",
+		})
+	}
+	// cookie := new(fiber.Cookie)
+	// cookie.Name = "jwt"
+	// cookie.Value = token
+	// cookie.Expires = auth.CookieExpireTime()
+	// c.Cookie(cookie)
+
 	return c.Status(200).JSON(fiber.Map{
-		"message": fmt.Sprintf("Hi %s you have successfully login", dbUser.FirstName),
+		"message":      fmt.Sprintf("Hi %s you have successfully login", dbUser.FirstName),
+		"acessToken":   acessToken,
+		"refreshToken": refreshToken,
 	})
 }
 

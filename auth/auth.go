@@ -9,23 +9,40 @@ import (
 	"strings"
 	"time"
 
+	"github.com/emmyduruc/moltrytodo/utils"
 	"github.com/gofiber/fiber/v2"
 	jwt "github.com/golang-jwt/jwt"
 )
 
-func CreateToken(user_id uint32) (string, error) {
-	token := jwt.New(jwt.SigningMethodEdDSA)
-	claims, _ := token.Claims.(jwt.MapClaims)
-	claims["authorized"] = true
-	claims["user_id"] = user_id
-	claims["exp"] = time.Now().Add(time.Hour * 1).Unix() //Token expires after 1 hour
-	tokenString, err := token.SignedString([]byte(os.Getenv("API_SECRET")))
+func CreateToken(user_id uint) (string, string, error) {
+	accessClaim := jwt.MapClaims{
+		"authorized": true,
+		"user_id":    user_id,
+		"exp":        time.Now().Add(time.Hour * 1).Unix(), //Token expires after 1 hour
+	}
+	accessToken, err := utils.GenerateToken(accessClaim)
 
 	if err != nil {
-		return "", err
+		return "", "", err
 	}
 
-	return tokenString, nil
+	refreshTokenExpiry, err := strconv.Atoi(os.Getenv("REFRESH_TOKEN_EXPIRY"))
+	fmt.Println(refreshTokenExpiry, os.Getenv("REFRESH_TOKEN_EXPIRY"), "refreshTokenExpiry", err)
+	if err != nil {
+		return "", "", err
+	}
+
+	refreshClaims := jwt.MapClaims{
+		"authorized": true,
+		"user_id":    user_id,
+		"exp":        time.Now().Add(time.Hour * time.Duration(refreshTokenExpiry)).Unix(), // Refresh token expires after specified duration
+	}
+	refreshToken, err := utils.GenerateToken(refreshClaims)
+	if err != nil {
+		return "", "", err
+	}
+
+	return accessToken, refreshToken, nil
 
 }
 
@@ -88,4 +105,8 @@ func Pretty(data interface{}) {
 	}
 
 	fmt.Println(string(b))
+}
+
+func CookieExpireTime() time.Time {
+	return time.Now().Add(time.Hour * 1)
 }
