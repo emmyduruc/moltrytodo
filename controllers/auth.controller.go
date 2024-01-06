@@ -55,3 +55,32 @@ func Login(c *fiber.Ctx) error {
 		"message": fmt.Sprintf("Hi %s you have successfully login", dbUser.FirstName),
 	})
 }
+
+func ChangePassword(c *fiber.Ctx) error {
+	user := new(models.User)
+	err := c.BodyParser(user)
+	if err != nil {
+		return c.Status(400).JSON(fiber.Map{
+			"message": "error parsing json",
+		})
+
+	}
+	var dbUser models.User
+	database.DB.Db.Where("email = ?", user.Email).First(&dbUser)
+	if dbUser.ID == 0 {
+		return c.Status(404).JSON(fiber.Map{
+			"message": "user not found",
+		})
+	}
+	hash, err := utils.Hash(user.Password)
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"message": "error hashing password",
+		})
+	}
+	dbUser.Password = string(hash)
+	database.DB.Db.Save(&dbUser)
+	return c.Status(200).JSON(fiber.Map{
+		"message": fmt.Sprintf("Hi %s you have successfully changed your password", dbUser.FirstName),
+	})
+}

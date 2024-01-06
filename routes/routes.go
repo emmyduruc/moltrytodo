@@ -19,5 +19,6 @@ func Routes(app *fiber.App) {
 
 	authGroup.Post("/signup", controllers.Signup)
 	authGroup.Post("/login", controllers.Login)
+	authGroup.Post("/change-password", controllers.ChangePassword)
 
 }
