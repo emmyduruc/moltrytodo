@@ -40,7 +40,7 @@ func Login(c *fiber.Ctx) error {
 	}
 	var dbUser models.User
 	database.DB.Db.Where("email = ?", user.Email).First(&dbUser)
-	if dbUser.ID == 0 {
+	if dbUser.ID == 0 || dbUser.Email == "" {
 		return c.Status(404).JSON(fiber.Map{
 			"message": "user not found",
 		})
