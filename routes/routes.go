@@ -35,7 +35,7 @@ func Routes(app *fiber.App) {
 	subtasksGroup := app.Group("/subtasks")
 	subtasksGroup.Use(middleware.AuthmiddlewareSetter)
 	subtasksGroup.Get("/", controllers.CreateSubtask)
-	subtasksGroup.Get("/:id", controllers.ListSubtasks)
+	subtasksGroup.Get("/", controllers.ListSubtasks)
 	subtasksGroup.Get("/:id", controllers.GetSubtask)
 	subtasksGroup.Get("/:id", controllers.UpdateSubtask)
 	subtasksGroup.Get("/:id", controllers.DeleteSubtask)
@@ -43,7 +43,8 @@ func Routes(app *fiber.App) {
 	categoryGroup := app.Group("/category")
 	categoryGroup.Use(middleware.AuthmiddlewareSetter)
 	categoryGroup.Post("/", controllers.CreateCategory)
-	categoryGroup.Get("/:id", controllers.ListCategories)
+	categoryGroup.Get("/", controllers.ListCategories)
 	categoryGroup.Get("/:id", controllers.GetCategory)
+	categoryGroup.Patch("/:id", controllers.UpdateCategory)
 
 }

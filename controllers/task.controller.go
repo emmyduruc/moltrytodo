@@ -68,9 +68,14 @@ func UpdateTask(c *fiber.Ctx) error {
 		})
 	}
 
-	database.DB.Db.Save(&task)
-
-	return c.Status(200).JSON(task)
+	if result := database.DB.Db.Save(&task); result.Error != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"message": "error updating task.............................",
+			"error":   result.Error.Error(),
+		})
+	} else {
+		return c.Status(200).JSON(task)
+	}
 }
 
 func DeleteTask(c *fiber.Ctx) error {
@@ -174,9 +179,15 @@ func UpdateSubtask(c *fiber.Ctx) error {
 		})
 	}
 
-	database.DB.Db.Save(&subtask)
+	if result := database.DB.Db.Save(&subtask); result.Error != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"message": "error updating subtask.............................",
+			"error":   result.Error.Error(),
+		})
+	} else {
 
-	return c.Status(200).JSON(subtask)
+		return c.Status(200).JSON(subtask)
+	}
 }
 
 func DeleteSubtask(c *fiber.Ctx) error {

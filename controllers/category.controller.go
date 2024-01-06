@@ -51,3 +51,22 @@ func GetCategory(c *fiber.Ctx) error {
 
 	return c.Status(200).JSON(category)
 }
+
+func UpdateCategory(c *fiber.Ctx) error {
+	category := models.Category{}
+	err := c.BodyParser(&category)
+	if err != nil {
+		return c.Status(400).JSON(fiber.Map{
+			"message": "error parsing json",
+		})
+	}
+
+	if result := database.DB.Db.Save(&category); result.Error != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"message": "error updating category.............................",
+			"error":   result.Error.Error(),
+		})
+	} else {
+		return c.Status(200).JSON(category)
+	}
+}
