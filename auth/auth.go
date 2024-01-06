@@ -62,6 +62,7 @@ func ValidatingToken(ctx *fiber.Ctx) error {
 		return []byte(os.Getenv("API_SECRET")), nil
 	})
 	if err != nil {
+		fmt.Println("Error ValidatingToken:", err)
 		return err
 	}
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
@@ -91,6 +92,7 @@ func ExtractTokenID(ctx *fiber.Ctx) (uint32, error) {
 		return []byte(os.Getenv("API_SECRET")), nil
 	})
 	if err != nil {
+		fmt.Println("Error ExtractTokenID:", err)
 		return 0, err
 	}
 	claims, ok := token.Claims.(jwt.MapClaims)

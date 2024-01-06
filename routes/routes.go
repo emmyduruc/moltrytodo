@@ -24,6 +24,7 @@ func Routes(app *fiber.App) {
 	authGroup.Post("/change-password", middleware.AuthmiddlewareSetter, controllers.ChangePassword)
 
 	tasksGroup := app.Group("/tasks")
+	tasksGroup.Use(middleware.AuthmiddlewareSetter)
 
 	tasksGroup.Post("/", controllers.CreateTask)
 	tasksGroup.Get("/", controllers.ListTasks)
@@ -31,12 +32,18 @@ func Routes(app *fiber.App) {
 	tasksGroup.Patch("/:id", controllers.UpdateTask)
 	tasksGroup.Delete("/:id", controllers.DeleteTask)
 
-	tasksGroup.Use(middleware.AuthmiddlewareSetter)
 	subtasksGroup := app.Group("/subtasks")
+	subtasksGroup.Use(middleware.AuthmiddlewareSetter)
 	subtasksGroup.Get("/", controllers.CreateSubtask)
 	subtasksGroup.Get("/:id", controllers.ListSubtasks)
 	subtasksGroup.Get("/:id", controllers.GetSubtask)
 	subtasksGroup.Get("/:id", controllers.UpdateSubtask)
 	subtasksGroup.Get("/:id", controllers.DeleteSubtask)
+
+	categoryGroup := app.Group("/category")
+	categoryGroup.Use(middleware.AuthmiddlewareSetter)
+	categoryGroup.Get("/", controllers.CreateCategory)
+	categoryGroup.Get("/:id", controllers.ListCategories)
+	categoryGroup.Get("/:id", controllers.GetCategory)
 
 }

@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"time"
+
 	database "github.com/emmyduruc/moltrytodo/db"
 	"github.com/emmyduruc/moltrytodo/models"
 	"github.com/gofiber/fiber/v2"
@@ -15,7 +17,15 @@ func CreateTask(c *fiber.Ctx) error {
 		})
 
 	}
-	database.DB.Db.Create(&task)
+	task.Status = "pending"
+	task.DueDate = time.Now()
+
+	if result := database.DB.Db.Create(&task); result.Error != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"message": "error creating task.............................",
+			"error":   result.Error.Error(),
+		})
+	}
 
 	return c.Status(201).JSON(task)
 }
