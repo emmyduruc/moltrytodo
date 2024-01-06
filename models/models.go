@@ -1,6 +1,10 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type User struct {
 	gorm.Model
@@ -22,11 +26,23 @@ type Category struct {
 
 type Task struct {
 	gorm.Model
-	CategoryID  uint   `json:"category_id" gorm:"integer;not null;default:null"`
-	UserID      uint   `json:"user_id" gorm:"integer;not null;default:null"`
-	Title       string `json:"title" gorm:"text;not null;default:null"`
-	Description string `json:"description" gorm:"text;not null;default:null"`
-	Completed   bool   `json:"completed" gorm:"boolean;not null;default:false"`
-	Priority    int    `json:"priority" gorm:"integer;not null;default:null"`
-	Status      string `json:"status" gorm:"text;not null;default:null"`
+	CategoryID  uint      `json:"category_id" gorm:"integer;not null;default:null"`
+	UserID      uint      `json:"user_id" gorm:"integer;not null;default:null"`
+	Subtasks    []Subtask `json:"subtasks" gorm:"foreignKey:TaskID"`
+	Title       string    `json:"title" gorm:"text;not null;default:null"`
+	Description string    `json:"description" gorm:"text;not null;default:null"`
+	Completed   bool      `json:"completed" gorm:"boolean;not null;default:false"`
+	Priority    int       `json:"priority" gorm:"integer;not null;default:null"`
+	Status      string    `json:"status" gorm:"text;not null;default:null"`
+	DueDate     time.Time `json:"due_date" gorm:"default:null"`
+}
+
+type Subtask struct {
+	gorm.Model
+	TaskID      uint      `json:"task_id" gorm:"integer;not null;default:null"`
+	Title       string    `json:"title" gorm:"text;not null;default:null"`
+	Description string    `json:"description" gorm:"text;not null;default:null"`
+	Completed   bool      `json:"completed" gorm:"boolean;not null;default:false"`
+	Status      string    `json:"status" gorm:"text;not null;default:null"`
+	DueDate     time.Time `json:"due_date" gorm:"default:null"`
 }

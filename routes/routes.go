@@ -21,4 +21,17 @@ func Routes(app *fiber.App) {
 	authGroup.Post("/login", controllers.Login)
 	authGroup.Post("/change-password", controllers.ChangePassword)
 
+	tasksGroup := app.Group("/tasks")
+
+	tasksGroup.Post("/", controllers.CreateTask)
+	tasksGroup.Get("/", controllers.ListTasks)
+	tasksGroup.Get("/:id", controllers.GetTask)
+	tasksGroup.Patch("/:id", controllers.UpdateTask)
+	tasksGroup.Delete("/:id", controllers.DeleteTask)
+	tasksGroup.Get("/user/:id", controllers.CreateSubtask)
+	tasksGroup.Get("/user/:id", controllers.ListSubtasks)
+	tasksGroup.Get("/user/:id", controllers.GetSubtask)
+	tasksGroup.Get("/user/:id", controllers.UpdateSubtask)
+	tasksGroup.Get("/user/:id", controllers.DeleteSubtask)
+
 }
