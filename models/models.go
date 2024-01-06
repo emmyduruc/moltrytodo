@@ -19,8 +19,8 @@ type Category struct {
 	gorm.Model
 	Name  string `json:"name" gorm:"text;not null;default:null"`
 	Tag   string `json:"tag" gorm:"text;not null;default:null"`
-	Color string `json:"color" gorm:"text;not null;default:null"`
-	Icon  string `json:"icon" gorm:"text;not null;default:null"`
+	Color string `json:"color" gorm:"text;not null;default:FF8080"`
+	Icon  string `json:"icon" gorm:"text;not null;default:work"`
 	Tasks []Task `json:"tasks" gorm:"foreignKey:CategoryID"`
 }
 

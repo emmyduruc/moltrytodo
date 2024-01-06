@@ -25,9 +25,10 @@ func CreateTask(c *fiber.Ctx) error {
 			"message": "error creating task.............................",
 			"error":   result.Error.Error(),
 		})
+	} else {
+		return c.Status(201).JSON(task)
 	}
 
-	return c.Status(201).JSON(task)
 }
 
 func ListTasks(c *fiber.Ctx) error {
@@ -125,9 +126,15 @@ func CreateSubtask(c *fiber.Ctx) error {
 		})
 
 	}
-	database.DB.Db.Create(&subtask)
+	if result := database.DB.Db.Create(&subtask); result.Error != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"message": "error creating subtask.............................",
+			"error":   result.Error.Error(),
+		})
+	} else {
 
-	return c.Status(201).JSON(subtask)
+		return c.Status(201).JSON(subtask)
+	}
 }
 
 func ListSubtasks(c *fiber.Ctx) error {

@@ -21,16 +21,23 @@ func CreateCategory(c *fiber.Ctx) error {
 			"message": "error creating category.............................",
 			"error":   result.Error.Error(),
 		})
+	} else {
+		return c.Status(201).JSON(category)
 	}
 
-	return c.Status(201).JSON(category)
 }
 
 func ListCategories(c *fiber.Ctx) error {
 	categories := []models.Category{}
-	database.DB.Db.Find(&categories)
 
-	return c.Status(200).JSON(categories)
+	if result := database.DB.Db.Find(&categories); result.Error != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"message": "error listing categories.............................",
+			"error":   result.Error.Error(),
+		})
+	} else {
+		return c.Status(200).JSON(categories)
+	}
 }
 
 func GetCategory(c *fiber.Ctx) error {

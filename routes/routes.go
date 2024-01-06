@@ -42,7 +42,7 @@ func Routes(app *fiber.App) {
 
 	categoryGroup := app.Group("/category")
 	categoryGroup.Use(middleware.AuthmiddlewareSetter)
-	categoryGroup.Get("/", controllers.CreateCategory)
+	categoryGroup.Post("/", controllers.CreateCategory)
 	categoryGroup.Get("/:id", controllers.ListCategories)
 	categoryGroup.Get("/:id", controllers.GetCategory)
 
