@@ -15,20 +15,25 @@ import (
 )
 
 func CreateToken(user_id uint) (string, string, error) {
+	accessTokenExpiry, err := strconv.Atoi(os.Getenv("ACCESS_TOKEN_EXPIRY"))
+	accessTokenDuration := time.Duration(accessTokenExpiry) * time.Hour
 	accessClaim := jwt.MapClaims{
 		"authorized": true,
 		"user_id":    user_id,
-		"exp":        time.Now().Add(time.Hour * 1).Unix(), //Token expires after 1 hour
+		"exp":        time.Now().Add(accessTokenDuration).Unix(), //Token expires after 1 hour
 	}
 	accessToken, err := utils.GenerateToken(accessClaim)
 
 	if err != nil {
+		fmt.Println("Error:", err)
+
 		return "", "", err
 	}
 
 	refreshTokenExpiry, err := strconv.Atoi(os.Getenv("REFRESH_TOKEN_EXPIRY"))
-	fmt.Println(refreshTokenExpiry, os.Getenv("REFRESH_TOKEN_EXPIRY"), "refreshTokenExpiry", err)
 	if err != nil {
+		fmt.Println("Error:", err)
+
 		return "", "", err
 	}
 
@@ -39,6 +44,8 @@ func CreateToken(user_id uint) (string, string, error) {
 	}
 	refreshToken, err := utils.GenerateToken(refreshClaims)
 	if err != nil {
+		fmt.Println("Error:", err)
+
 		return "", "", err
 	}
 
