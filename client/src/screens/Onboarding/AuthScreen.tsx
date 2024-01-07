@@ -2,8 +2,14 @@ import { Text } from "../../component/Text/Text";
 import { GradientLayout } from "../../component/Layout/GradientLayout";
 import { View } from "react-native";
 import { SubmitButton } from "../../component/Button/SubmitButton";
+import { NavigationProp } from "@react-navigation/native";
+import { NonAuthStackParamList } from "src/stack/NonAuth";
 
-export const AuthScreen = ({ navigation }) => {
+interface AuthScreenProps extends NavigationProp<NonAuthStackParamList> {
+  navigation: NavigationProp<NonAuthStackParamList>;
+}
+
+export const AuthScreen = ({ navigation }: AuthScreenProps) => {
   return (
     <GradientLayout>
       <View className="flex-1 justify-center">

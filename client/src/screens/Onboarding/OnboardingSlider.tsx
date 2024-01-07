@@ -16,7 +16,7 @@ const SIZE = PAGE_WIDTH * 0.7;
 
 interface PageProps {
   index: number;
-  title: { head: string; des: string };
+  title: { head: string; des: string; imgpath: string };
   translateX: any;
   onPress?: () => void;
 }
@@ -31,7 +31,7 @@ interface DotProps {
 
 const Page = (props: PageProps) => {
   const { index, title, translateX, onPress } = props;
-
+  console.log(title.imgpath);
   const inputRange = [
     (index - 1) * PAGE_WIDTH,
     index * PAGE_WIDTH,
@@ -55,7 +55,6 @@ const Page = (props: PageProps) => {
 
     return {
       transform: [{ scale: scale }],
-      // transform: [{ rotate: scale }],
       borderRadius,
     };
   });
@@ -97,7 +96,7 @@ const Page = (props: PageProps) => {
             position: "absolute",
             top: 115,
           }}
-          source={require("../../../assets/frame1.png")}
+          source={title.imgpath}
         />
       </View>
       <Animated.View style={[textStyle, Style.container]}>
