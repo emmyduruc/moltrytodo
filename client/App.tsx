@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import { BaseNavigator } from "./src/stack/BaseNavigator";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -44,8 +45,10 @@ export default function App() {
       }}
       style={styles.container}
     >
+      <SafeAreaView />
+
       <BaseNavigator />
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </View>
   );
 }
@@ -53,8 +56,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
     justifyContent: "center",
   },
 });

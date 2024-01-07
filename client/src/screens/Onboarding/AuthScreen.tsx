@@ -1,10 +1,12 @@
 import { GradientLayout } from "../../component/layout/GradientLayout";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
 export const AuthScreen = () => {
   return (
     <GradientLayout>
-      <Text>AuthScreen</Text>
+      <View className="flex-1 justify-center">
+        <Text className="text-red-500">AuthScreen</Text>
+      </View>
     </GradientLayout>
   );
 };

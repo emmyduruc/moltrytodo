@@ -9,7 +9,7 @@ export const GradientLayout = ({ children }: GradientLayoutProps) => {
   return (
     <LinearGradient
       className="flex-1"
-      colors={["#85E7D5", "##050404", "#192f6a"]}
+      colors={["#3D3A3A", "#000000", "#684998"]}
     >
       <View className="flex-1 w-11/12 justify-center self-center">
         {children}
