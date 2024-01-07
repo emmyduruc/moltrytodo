@@ -5,8 +5,8 @@ import { GradientLayout } from "../../component/Layout/GradientLayout";
 import { Input } from "../../component/Inputs/TextInput";
 import { useFormik } from "formik";
 import {
-  RegisterValues,
-  registerValidationSchema,
+  LoginValues,
+  loginValidationSchema,
 } from "../../validators/validation";
 import { translate } from "../../services/translation.service";
 import { SubmitButton } from "../../component/Button/SubmitButton";
@@ -18,15 +18,13 @@ interface RegisterScreenProps extends NavigationProp<NonAuthStackParamList> {
   navigation: NavigationProp<NonAuthStackParamList>;
 }
 
-export const Register = ({ navigation }: RegisterScreenProps) => {
-  const formik = useFormik<RegisterValues>({
+export const Login = ({ navigation }: RegisterScreenProps) => {
+  const formik = useFormik<LoginValues>({
     initialValues: {
       email: "",
       password: "",
-      confirmPassword: "",
-      username: "",
     },
-    validationSchema: registerValidationSchema,
+    validationSchema: loginValidationSchema,
     onSubmit(values, formikHelpers) {},
   });
 
@@ -46,7 +44,7 @@ export const Register = ({ navigation }: RegisterScreenProps) => {
     <GradientLayout>
       <Text className="text-base text-center my-2 font-medium font-montserrat">
         {translate(
-          "register_with_us_to_build_your_own_routine_manage_your_tasks_and_be_more_productive"
+          "welcome_back_to_admoritodo_login_to_your_account_to_continue_managing_your_tasks"
         )}
       </Text>
       <KeyboardAvoidingView
@@ -55,22 +53,13 @@ export const Register = ({ navigation }: RegisterScreenProps) => {
         behavior={"padding"}
       >
         <Input
-          titleLabel={translate("username")}
-          onChange={onChange}
-          name={"username"}
-          autoFocus={true}
-          formikFieldName={"username"}
-          formik={formik}
-          validationSchema={registerValidationSchema}
-        />
-
-        <Input
           titleLabel={translate("email")}
           onChange={onChange}
           name={"email"}
           formikFieldName={"email"}
+          autoFocus={true}
           formik={formik}
-          validationSchema={registerValidationSchema}
+          validationSchema={loginValidationSchema}
         />
 
         <Input
@@ -79,18 +68,11 @@ export const Register = ({ navigation }: RegisterScreenProps) => {
           name={"password"}
           formikFieldName={"password"}
           formik={formik}
-          validationSchema={registerValidationSchema}
+          validationSchema={loginValidationSchema}
         />
-        <Input
-          titleLabel={translate("confirmPassword")}
-          onChange={onChange}
-          name={"confirmPassword"}
-          formikFieldName={"confirmPassword"}
-          formik={formik}
-          validationSchema={registerValidationSchema}
-        />
+
         <SubmitButton disabled={!formik.isValid} onPress={onSubmitPress}>
-          {translate("register")}
+          {translate("login")}
         </SubmitButton>
       </KeyboardAvoidingView>
     </GradientLayout>

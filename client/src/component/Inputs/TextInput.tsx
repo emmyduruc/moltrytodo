@@ -49,7 +49,6 @@ export const Input = <T extends {}>({
           secureTextEntry={hidePassword}
           keyboardType={keyboardType}
           selectionColor={"#fff"}
-          autoFocus={true}
           className="flex-1 pl-2 text-white text-base"
           {...props}
         />

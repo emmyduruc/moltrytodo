@@ -4,5 +4,7 @@
   "email": "Email",
   "confirmPassword": "Confirm password",
   "register": "Register",
-  "register_with_us_to_build_your_own_routine_manage_your_tasks_and_be_more_productive": "Register with us to build your own routine, manage your tasks and be more productive"
+  "login": "Login",
+  "register_with_us_to_build_your_own_routine_manage_your_tasks_and_be_more_productive": "Register with us to build your own routine, manage your tasks and be more productive",
+  "welcome_back_to_admoritodo_login_to_your_account_to_continue_managing_your_tasks": "Welcome back to Admoritodo! Login to your account to continue managing your tasks"
 }

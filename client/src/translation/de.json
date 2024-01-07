@@ -4,5 +4,7 @@
   "email": "Email",
   "confirmPassword": "Passwort bestätigen",
   "register": "Registrieren",
-  "register_with_us_to_build_your_own_routine_manage_your_tasks_and_be_more_productive": "Registrieren Sie sich bei uns, um Ihren eigenen Zeitplan zu erstellen, Ihre Aufgaben zu verwalten und produktiver zu sein."
+  "login": "Anmelden",
+  "register_with_us_to_build_your_own_routine_manage_your_tasks_and_be_more_productive": "Registrieren Sie sich bei uns, um Ihren eigenen Zeitplan zu erstellen, Ihre Aufgaben zu verwalten und produktiver zu sein.",
+  "welcome_back_to_admoritodo_login_to_your_account_to_continue_managing_your_tasks": "Willkommen zurück bei Admoritodo. Melden Sie sich bei Ihrem Konto an, um die Verwaltung Ihrer Aufgaben fortzusetzen."
 }

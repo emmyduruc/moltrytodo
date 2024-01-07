@@ -31,13 +31,20 @@ export const AuthScreen = ({ navigation }: AuthScreenProps) => {
         <View className="mt-8">
           <SubmitButton
             onPress={() => {
-              navigation.navigate("OnBoarding");
+              navigation.navigate("Login");
             }}
             className="bg-purple-100"
           >
             Login
           </SubmitButton>
-          <SubmitButton className="bg-purple-100">Create account</SubmitButton>
+          <SubmitButton
+            onPress={() => {
+              navigation.navigate("Register");
+            }}
+            className="bg-purple-100"
+          >
+            Create account
+          </SubmitButton>
         </View>
       </View>
     </GradientLayout>
