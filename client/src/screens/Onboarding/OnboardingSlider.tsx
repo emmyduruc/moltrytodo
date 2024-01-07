@@ -161,8 +161,6 @@ const Dot = (props: DotProps) => {
 const Style = StyleSheet.create({
   pageContainer: {
     flex: 1,
-    // height: PAGE_HEIGHT,
-    // width: PAGE_WIDTH,
     alignItems: "center",
     justifyContent: "center",
   },
