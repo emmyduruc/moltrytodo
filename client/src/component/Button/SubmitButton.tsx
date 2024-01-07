@@ -11,7 +11,7 @@ export const SubmitButton = ({ children, ...rest }: SubmitButtonProps) => {
   return (
     <TouchableOpacity
       className="
-        bg-white
+        bg-purple-100
         rounded-lg
         py-2
         px-4
@@ -21,7 +21,7 @@ export const SubmitButton = ({ children, ...rest }: SubmitButtonProps) => {
     >
       <Text
         className="
-            text-black
+            text-white
             text-base
             text-center
             "

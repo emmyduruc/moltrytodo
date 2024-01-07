@@ -3,7 +3,7 @@ import { GradientLayout } from "../../component/Layout/GradientLayout";
 import { View } from "react-native";
 import { SubmitButton } from "../../component/Button/SubmitButton";
 
-export const AuthScreen = () => {
+export const AuthScreen = ({ navigation }) => {
   return (
     <GradientLayout>
       <View className="flex-1 justify-center">
@@ -15,7 +15,7 @@ export const AuthScreen = () => {
         font-Montserrat-Bold
         "
           >
-            Welcome to AdmoriTodo
+            Welcome to Admoritodo
           </Text>
 
           <Text className="mt-6">
@@ -23,7 +23,14 @@ export const AuthScreen = () => {
           </Text>
         </View>
         <View className="mt-8">
-          <SubmitButton className="bg-purple-100">Login</SubmitButton>
+          <SubmitButton
+            onPress={() => {
+              navigation.navigate("OnBoarding");
+            }}
+            className="bg-purple-100"
+          >
+            Login
+          </SubmitButton>
           <SubmitButton className="bg-purple-100">Create account</SubmitButton>
         </View>
       </View>
