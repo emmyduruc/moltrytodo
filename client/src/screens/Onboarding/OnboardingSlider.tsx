@@ -31,7 +31,6 @@ interface DotProps {
 
 const Page = (props: PageProps) => {
   const { index, title, translateX, onPress } = props;
-  console.log(title.imgpath);
   const inputRange = [
     (index - 1) * PAGE_WIDTH,
     index * PAGE_WIDTH,
