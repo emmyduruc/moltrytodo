@@ -1,6 +1,9 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "baseUrl": "./",
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*", "./nativewind.d.ts", "./declaration.d.ts"]
 }
