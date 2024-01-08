@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Text } from "../component/Text/Text";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "../component/Icons/Icon";
@@ -79,14 +79,14 @@ export const BottomTabNavigator = () => {
         },
         headerShown: true,
         headerLeft: () => (
-          <View className="ml-2">
+          <TouchableOpacity className="ml-2">
             <Icon color={"white"} size={35} name={"menu-outline"} />
-          </View>
+          </TouchableOpacity>
         ),
         headerRight: () => (
-          <View className="mr-2">
+          <TouchableOpacity className="mr-2">
             <Icon color={"white"} size={35} name={"person-circle-outline"} />
-          </View>
+          </TouchableOpacity>
         ),
         headerStyle: {
           backgroundColor: "#000000",
@@ -132,3 +132,4 @@ export const BottomTabNavigator = () => {
     </TabNavigator.Navigator>
   );
 };
+//Clean up later on
