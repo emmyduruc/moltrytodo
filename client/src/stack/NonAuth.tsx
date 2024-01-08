@@ -4,12 +4,14 @@ import { AuthScreen } from "../screens/Onboarding/AuthScreen";
 import { OnBoarding } from "../screens/Onboarding/Onboarding";
 import { Register } from "../screens/Onboarding/Register";
 import { Login } from "../screens/Onboarding/Login";
+import { BottomTabNavigator } from "./TabNavigator";
 
 export type NonAuthStackParamList = {
   Hi: undefined;
   OnBoarding: undefined;
   Register: undefined;
   Login: undefined;
+  Home: undefined;
 };
 
 const StackNavigator = createStackNavigator<NonAuthStackParamList>();
@@ -20,5 +22,12 @@ export const NonAuth = (
     <StackNavigator.Screen name="OnBoarding" component={OnBoarding} />
     <StackNavigator.Screen name="Register" component={Register} />
     <StackNavigator.Screen name="Login" component={Login} />
+    <StackNavigator.Screen
+      screenOptions={{
+        headerShown: false,
+      }}
+      name="HomeScreen"
+      component={BottomTabNavigator}
+    />
   </>
 );

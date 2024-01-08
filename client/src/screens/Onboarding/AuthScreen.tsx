@@ -31,7 +31,7 @@ export const AuthScreen = ({ navigation }: AuthScreenProps) => {
         <View className="mt-8">
           <SubmitButton
             onPress={() => {
-              navigation.navigate("Login");
+              navigation.navigate("HomeScreen");
             }}
             className="bg-purple-100"
           >

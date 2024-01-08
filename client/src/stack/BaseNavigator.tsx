@@ -9,8 +9,8 @@ export const BaseNavigator = () => {
   return (
     <NavigationContainer>
       <StackNavigator.Navigator
-        screenOptions={{
-          headerShown: true,
+        screenOptions={({ route }) => ({
+          headerShown: route.name === "HomeScreen" ? false : true,
           headerStyle: {
             backgroundColor: "#000000",
             elevation: 0,
@@ -22,7 +22,7 @@ export const BaseNavigator = () => {
           headerLeftContainerStyle: {
             paddingLeft: 20,
           },
-        }}
+        })}
       >
         {NonAuth}
       </StackNavigator.Navigator>
