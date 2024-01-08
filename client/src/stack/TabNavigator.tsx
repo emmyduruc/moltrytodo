@@ -67,7 +67,7 @@ export const BottomTabNavigator = () => {
 
           return (
             <View>
-              <Icon style={[{ color: color }]} size={25} name={iconName} />
+              <Icon color={"white"} size={25} name={iconName} />
             </View>
           );
         },
@@ -79,8 +79,13 @@ export const BottomTabNavigator = () => {
         },
         headerShown: true,
         headerLeft: () => (
-          <View>
-            <Text>Left</Text>
+          <View className="ml-2">
+            <Icon color={"white"} size={35} name={"menu-outline"} />
+          </View>
+        ),
+        headerRight: () => (
+          <View className="mr-2">
+            <Icon color={"white"} size={35} name={"person-circle-outline"} />
           </View>
         ),
         headerStyle: {
@@ -90,7 +95,7 @@ export const BottomTabNavigator = () => {
           borderBottomWidth: 0,
         },
         tabBarStyle: {
-          backgroundColor: "#fff",
+          backgroundColor: "#000000",
           borderTopWidth: 0,
           elevation: 0,
         },
