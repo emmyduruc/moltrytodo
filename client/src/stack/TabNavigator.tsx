@@ -3,9 +3,9 @@ import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Text } from "../component/Text/Text";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "../component/Icons/Icon";
-import { CalenderPicker } from "../component/Pickers/CalenderPicker";
 import { HomeScreen } from "../screens/Welcome/HomeScreen";
 import { useNavigation } from "@react-navigation/native";
+import { CreateTask } from "../screens/Task/CreateTask";
 
 const ProfileScreen = () => {
   return (
@@ -66,11 +66,11 @@ export const BottomTabNavigator = () => {
             iconName = focused ? "ios-images" : "ios-images-outline";
           } else if (route.name === "Cart") {
             iconName = focused ? "ios-cart" : "ios-cart-outline";
-          } else if (route.name === "AddTodo") {
+          } else if (route.name === "CreateTask") {
             return (
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("AddTodo");
+                  navigation.navigate("CreateTask");
                 }}
                 className="bg-purple-100 rounded-full w-20 h-20 mb-12 justify-center items-center"
               >
@@ -122,7 +122,7 @@ export const BottomTabNavigator = () => {
     >
       <TabNavigator.Screen name="Home" component={HomeScreen} />
       <TabNavigator.Screen name="History" component={HistoryScreen} />
-      <TabNavigator.Screen name="AddTodo" component={AddTodoScreen} />
+      <TabNavigator.Screen name="CreateTask" component={CreateTask} />
       <TabNavigator.Screen name="Cart" component={CartScreen} />
       <TabNavigator.Screen name="Profile" component={ProfileScreen} />
     </TabNavigator.Navigator>

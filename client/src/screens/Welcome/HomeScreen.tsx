@@ -11,11 +11,6 @@ export const HomeScreen = () => {
           source={require("../../../assets/home.png")}
           style={{ width: 200, height: 200 }}
         />
-        {/* <Text className="text-white my-2 text-2xl font-semibold">
-          {translate(
-            "welcome_to_admoritodo_lets_get_started_by_creating_your_first_task"
-          )}
-        </Text> */}
 
         <Text className="text-white text-base font-medium">
           {translate(

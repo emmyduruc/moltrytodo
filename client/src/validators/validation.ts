@@ -22,3 +22,11 @@ export const loginValidationSchema = yup.object().shape({
   password: yup.string().required("Password is required"),
 });
 export type LoginValues = yup.InferType<typeof loginValidationSchema>;
+
+export const taskValidationSchema = yup.object().shape({
+  title: yup.string().required("Title is required"),
+  description: yup.string(),
+  ///date: yup.string().required("Date is required"),
+});
+
+export type TaskValues = yup.InferType<typeof taskValidationSchema>;
