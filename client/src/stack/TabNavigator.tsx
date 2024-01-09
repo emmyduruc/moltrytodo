@@ -3,15 +3,9 @@ import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Text } from "../component/Text/Text";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "../component/Icons/Icon";
-import { useNavigationState } from "@react-navigation/native";
-
-const HomeScreen = () => {
-  return (
-    <View style={styles.container}>
-      <Text>HomeScreen</Text>
-    </View>
-  );
-};
+import { CalenderPicker } from "../component/Pickers/CalenderPicker";
+import { HomeScreen } from "../screens/Welcome/HomeScreen";
+import { useNavigation } from "@react-navigation/native";
 
 const ProfileScreen = () => {
   return (
@@ -37,6 +31,14 @@ const CartScreen = () => {
   );
 };
 
+const AddTodoScreen = () => {
+  return (
+    <View style={styles.container}>
+      <Text className="text-black text-sm">AddTodoScreen</Text>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -48,6 +50,7 @@ const styles = StyleSheet.create({
 const TabNavigator = createBottomTabNavigator();
 
 export const BottomTabNavigator = () => {
+  const navigation = useNavigation();
   return (
     <TabNavigator.Navigator
       initialRouteName="Home"
@@ -63,6 +66,17 @@ export const BottomTabNavigator = () => {
             iconName = focused ? "ios-images" : "ios-images-outline";
           } else if (route.name === "Cart") {
             iconName = focused ? "ios-cart" : "ios-cart-outline";
+          } else if (route.name === "AddTodo") {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("AddTodo");
+                }}
+                className="bg-purple-100 rounded-full w-20 h-20 mb-12 justify-center items-center"
+              >
+                <Icon color={"white"} size={25} name={"add"} />
+              </TouchableOpacity>
+            );
           }
 
           return (
@@ -84,7 +98,12 @@ export const BottomTabNavigator = () => {
           </TouchableOpacity>
         ),
         headerRight: () => (
-          <TouchableOpacity className="mr-2">
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Profile");
+            }}
+            className="mr-2"
+          >
             <Icon color={"white"} size={35} name={"person-circle-outline"} />
           </TouchableOpacity>
         ),
@@ -101,34 +120,11 @@ export const BottomTabNavigator = () => {
         },
       })}
     >
-      <TabNavigator.Screen
-        options={{
-          title: "Home",
-        }}
-        name="Home"
-        component={HomeScreen}
-      />
-      <TabNavigator.Screen
-        options={{
-          title: "Home",
-        }}
-        name="History"
-        component={HistoryScreen}
-      />
-      <TabNavigator.Screen
-        options={{
-          title: "Home",
-        }}
-        name="Cart"
-        component={CartScreen}
-      />
-      <TabNavigator.Screen
-        options={{
-          title: "Profile",
-        }}
-        name="Profile"
-        component={ProfileScreen}
-      />
+      <TabNavigator.Screen name="Home" component={HomeScreen} />
+      <TabNavigator.Screen name="History" component={HistoryScreen} />
+      <TabNavigator.Screen name="AddTodo" component={AddTodoScreen} />
+      <TabNavigator.Screen name="Cart" component={CartScreen} />
+      <TabNavigator.Screen name="Profile" component={ProfileScreen} />
     </TabNavigator.Navigator>
   );
 };

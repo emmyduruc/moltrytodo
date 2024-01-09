@@ -5,6 +5,10 @@
   "confirmPassword": "Passwort bestätigen",
   "register": "Registrieren",
   "login": "Anmelden",
+  "cancel": "Abbrechen",
   "register_with_us_to_build_your_own_routine_manage_your_tasks_and_be_more_productive": "Registrieren Sie sich bei uns, um Ihren eigenen Zeitplan zu erstellen, Ihre Aufgaben zu verwalten und produktiver zu sein.",
-  "welcome_back_to_admoritodo_login_to_your_account_to_continue_managing_your_tasks": "Willkommen zurück bei Admoritodo. Melden Sie sich bei Ihrem Konto an, um die Verwaltung Ihrer Aufgaben fortzusetzen."
+  "welcome_back_to_admoritodo_login_to_your_account_to_continue_managing_your_tasks": "Willkommen zurück bei Admoritodo. Melden Sie sich bei Ihrem Konto an, um die Verwaltung Ihrer Aufgaben fortzusetzen.",
+  "forgot_password": "Passwort vergessen",
+  "welcome_to_admoritodo_lets_get_started_by_creating_your_first_task": "Willkommen bei Admoritodo. Beginnen wir mit der Erstellung Ihrer ersten Aufgabe.",
+  "you_can_create_your_first_task_by_clicking_on_the_plus_button_on_the_bottom_right_corner_of_the_screen": "Sie können Ihre erste Aufgabe erstellen, indem Sie auf die Plus-Schaltfläche in der unteren rechten Ecke des Bildschirms klicken."
 }

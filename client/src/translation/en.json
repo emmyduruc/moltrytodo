@@ -5,6 +5,9 @@
   "confirmPassword": "Confirm password",
   "register": "Register",
   "login": "Login",
+  "cancel": "Cancel",
   "register_with_us_to_build_your_own_routine_manage_your_tasks_and_be_more_productive": "Register with us to build your own routine, manage your tasks and be more productive",
-  "welcome_back_to_admoritodo_login_to_your_account_to_continue_managing_your_tasks": "Welcome back to Admoritodo! Login to your account to continue managing your tasks"
+  "welcome_back_to_admoritodo_login_to_your_account_to_continue_managing_your_tasks": "Welcome back to Admoritodo! Login to your account to continue managing your tasks",
+  "welcome_to_admoritodo_lets_get_started_by_creating_your_first_task": "Welcome to Admoritodo! Let's get started by creating your first task",
+  "you_can_create_your_first_task_by_clicking_on_the_plus_button_on_the_bottom_right_corner_of_the_screen": "You can create your first task by clicking on the plus button on the bottom right corner"
 }
