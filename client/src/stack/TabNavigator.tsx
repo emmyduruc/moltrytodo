@@ -93,8 +93,13 @@ export const BottomTabNavigator = () => {
         },
         headerShown: true,
         headerLeft: () => (
-          <TouchableOpacity className="ml-2">
-            <Icon color={"white"} size={35} name={"menu-outline"} />
+          <TouchableOpacity
+            onPress={() => {
+              navigation.goBack();
+            }}
+            className="ml-2"
+          >
+            <Icon color={"white"} size={35} name={"chevron-back"} />
           </TouchableOpacity>
         ),
         headerRight: () => (
@@ -128,4 +133,4 @@ export const BottomTabNavigator = () => {
     </TabNavigator.Navigator>
   );
 };
-//Clean up later on
+//Todo:Clean up later on
