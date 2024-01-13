@@ -25,7 +25,7 @@ export const CreateTask = () => {
   return (
     <GradientLayout>
       <View className="flex-1 items-center justify-center">
-        <View className="h-20p-4 w-[80%] items-center justify-center">
+        <View className="h-20 w-[80%] items-center justify-center">
           <Modal
             isVisible={modalVisible}
             onBackdropPress={() => setModalVisible(false)}

@@ -5,6 +5,7 @@ import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import { BaseNavigator } from "./src/stack/BaseNavigator";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ParentStoreProvider, parentStore } from "./src/store/index";
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -38,18 +39,20 @@ export default function App() {
   }, [appIsReady]);
 
   return (
-    <View
-      onLayout={() => {
-        handleOnLayout();
-        setAppIsReady(true);
-      }}
-      style={styles.container}
-    >
-      <SafeAreaView />
+    <ParentStoreProvider value={parentStore}>
+      <View
+        onLayout={() => {
+          handleOnLayout();
+          setAppIsReady(true);
+        }}
+        style={styles.container}
+      >
+        <SafeAreaView />
 
-      <BaseNavigator />
-      <StatusBar style="light" />
-    </View>
+        <BaseNavigator />
+        <StatusBar style="light" />
+      </View>
+    </ParentStoreProvider>
   );
 }
 
