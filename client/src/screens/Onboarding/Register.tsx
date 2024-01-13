@@ -56,7 +56,6 @@ export const Register = ({ navigation }: RegisterScreenProps) => {
       >
         <Input
           titleLabel={translate("username")}
-          onChange={onChange}
           name={"username"}
           autoFocus={true}
           formikFieldName={"username"}
@@ -66,7 +65,6 @@ export const Register = ({ navigation }: RegisterScreenProps) => {
 
         <Input
           titleLabel={translate("email")}
-          onChange={onChange}
           name={"email"}
           formikFieldName={"email"}
           formik={formik}
@@ -75,7 +73,6 @@ export const Register = ({ navigation }: RegisterScreenProps) => {
 
         <Input
           titleLabel={translate("password")}
-          onChange={onChange}
           name={"password"}
           formikFieldName={"password"}
           formik={formik}
@@ -83,13 +80,21 @@ export const Register = ({ navigation }: RegisterScreenProps) => {
         />
         <Input
           titleLabel={translate("confirmPassword")}
-          onChange={onChange}
           name={"confirmPassword"}
           formikFieldName={"confirmPassword"}
           formik={formik}
           validationSchema={registerValidationSchema}
         />
-        <SubmitButton disabled={!formik.isValid} onPress={onSubmitPress}>
+        <SubmitButton
+          disabled={
+            !formik.isValid ||
+            !formik.values.email ||
+            !formik.values.password ||
+            !formik.values.confirmPassword ||
+            !formik.values.username
+          }
+          onPress={onSubmitPress}
+        >
           {translate("register")}
         </SubmitButton>
       </KeyboardAvoidingView>

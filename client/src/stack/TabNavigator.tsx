@@ -6,6 +6,7 @@ import { Icon } from "../component/Icons/Icon";
 import { HomeScreen } from "../screens/Welcome/HomeScreen";
 import { useNavigation } from "@react-navigation/native";
 import { CreateTask } from "../screens/Task/CreateTask";
+import { useStorage } from "../store";
 
 const ProfileScreen = () => {
   return (
@@ -50,6 +51,8 @@ const styles = StyleSheet.create({
 const TabNavigator = createBottomTabNavigator();
 
 export const BottomTabNavigator = () => {
+  const store = useStorage().primaryUI;
+
   const navigation = useNavigation();
   return (
     <TabNavigator.Navigator
@@ -71,6 +74,7 @@ export const BottomTabNavigator = () => {
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate("CreateTask");
+                  store.toggleModal(true);
                 }}
                 className="bg-purple-100 rounded-full w-20 h-20 mb-12 justify-center items-center"
               >

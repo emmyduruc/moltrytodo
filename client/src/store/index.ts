@@ -16,4 +16,4 @@ export const createParentStore = (): IParentStore => {
 export const parentStore = createParentStore();
 export const parentStoreContext = createContext<IParentStore>(parentStore);
 export const ParentStoreProvider = parentStoreContext.Provider;
-export const useParentStore = () => useContext(parentStoreContext);
+export const useStorage = () => useContext(parentStoreContext);

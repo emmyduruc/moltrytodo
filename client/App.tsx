@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import { BaseNavigator } from "./src/stack/BaseNavigator";
@@ -45,20 +45,12 @@ export default function App() {
           handleOnLayout();
           setAppIsReady(true);
         }}
-        style={styles.container}
+        className="flex-1 justify-center"
       >
         <SafeAreaView />
-
         <BaseNavigator />
         <StatusBar style="light" />
       </View>
     </ParentStoreProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
-});

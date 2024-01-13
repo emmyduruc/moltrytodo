@@ -1,4 +1,10 @@
-import { TextInput, TextInputProps, View } from "react-native";
+import {
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputChangeEventData,
+  TextInputProps,
+  View,
+} from "react-native";
 import { FormikProps } from "formik";
 import { Text } from "../Text/Text";
 
@@ -6,7 +12,7 @@ export interface CustomInputProps<T> extends TextInputProps {
   placeHolder?: string;
   titleLabel?: string;
   marginBottom?: number;
-  onChange: (e: any) => void;
+  onChange?: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
   name: keyof T;
   hidePassword?: boolean;
   forgotPassword?: boolean;

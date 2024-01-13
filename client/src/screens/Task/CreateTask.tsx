@@ -1,14 +1,20 @@
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { GradientLayout } from "../../component/Layout/GradientLayout";
 import { translate } from "../../services/translation.service";
 import { Input } from "../../component/Inputs/TextInput";
 import { useFormik } from "formik";
 import { TaskValues, taskValidationSchema } from "../../validators/validation";
-import { useState } from "react";
 import Modal from "react-native-modal";
+import { useStorage } from "../../store";
+import { observer } from "mobx-react-lite";
+import { EventType } from "../../models/input.model";
+import { Timer } from "../../component/Icons/Timer";
+import { Send } from "../../component/Icons/Send";
+import { Tag } from "../../component/Icons/Tag";
+import { Flag } from "../../component/Icons/Flag";
 
-export const CreateTask = () => {
-  const [modalVisible, setModalVisible] = useState(true);
+export const CreateTask = observer(() => {
+  const store = useStorage().primaryUI;
   const formik = useFormik<TaskValues>({
     initialValues: {
       title: "",
@@ -18,23 +24,31 @@ export const CreateTask = () => {
     onSubmit(values, formikHelpers) {},
   });
 
-  const onChange = (text: string) => {
-    console.log("onchange text", text);
+  const onChange = (event: EventType) => {
+    console.log("onchange text", event);
+  };
+
+  const onSubmitPress = () => {
+    formik.handleSubmit();
+    console.log("formik", formik.values);
+    if (formik.isValid) {
+      console.log("valid");
+      store.toggleModal(true);
+    }
   };
 
   return (
     <GradientLayout>
       <View className="flex-1 items-center justify-center">
-        <View className="h-20 w-[80%] items-center justify-center">
+        <View className="w-[80%] items-center justify-center">
           <Modal
-            isVisible={modalVisible}
-            onBackdropPress={() => setModalVisible(false)}
+            isVisible={store.isModalOpen}
+            onBackdropPress={() => store.toggleModal(false)}
             animationIn={"slideInUp"}
           >
-            <View className="p-4 bg-purple-100 rounded-2xl">
+            <View className="p-4 h-[26%] bg-black-100 rounded-2xl">
               <Input
                 titleLabel={translate("title")}
-                onChange={onChange}
                 name={"title"}
                 formikFieldName={"title"}
                 autoFocus={true}
@@ -45,16 +59,25 @@ export const CreateTask = () => {
 
               <Input
                 titleLabel={translate("description")}
-                onChange={onChange}
                 name={"description"}
                 formikFieldName={"description"}
                 formik={formik}
                 validationSchema={taskValidationSchema}
               />
+              <View className="flex-1 pt-4 flex-row justify-between">
+                <View className="flex-row w-[40%] justify-between">
+                  <Timer />
+                  <Tag />
+                  <Flag />
+                </View>
+                <TouchableOpacity onPress={onSubmitPress} className="">
+                  <Send />
+                </TouchableOpacity>
+              </View>
             </View>
           </Modal>
         </View>
       </View>
     </GradientLayout>
   );
-};
+});

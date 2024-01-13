@@ -8,6 +8,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        black: {
+          100: "#363636",
+          DEFAULT: "#000000",
+        },
         purple: {
           100: "#8875FF",
           200: "#7B61FF",
