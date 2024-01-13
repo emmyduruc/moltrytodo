@@ -66,17 +66,6 @@ export const CreateTask = observer(() => {
   return (
     <GradientLayout>
       <View className="flex-1 justify-center mt-8">
-        <View className="flex-1 justify-center items-center">
-          <Text className="text-3xl text-center my-2 font-medium font-montserrat">
-            {translate("create_task")}
-          </Text>
-          <Text className="text-base text-center my-2 font-medium font-montserrat">
-            {translate(
-              "create_a_task_to_build_your_own_routine_manage_your_tasks_and_be_more_productive"
-            )}
-          </Text>
-        </View>
-
         <FlatList
           data={createTaskUiRenderData}
           renderItem={({ item }) => (
@@ -89,6 +78,18 @@ export const CreateTask = observer(() => {
             </TouchableOpacity>
           )}
           keyExtractor={(item) => item.id.toString()}
+          ListHeaderComponent={
+            <View className="flex-1 justify-center items-center">
+              <Text className="text-3xl text-center my-2 font-medium font-montserrat">
+                {translate("create_task")}
+              </Text>
+              <Text className="text-base text-center my-2 font-medium font-montserrat">
+                {translate(
+                  "create_a_task_to_build_your_own_routine_manage_your_tasks_and_be_more_productive"
+                )}
+              </Text>
+            </View>
+          }
         />
 
         <View className="flex-1 items-center justify-center">
