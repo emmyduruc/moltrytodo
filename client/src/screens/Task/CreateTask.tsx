@@ -13,6 +13,7 @@ import { Tag } from "../../component/Icons/Tag";
 import { Flag } from "../../component/Icons/Flag";
 import { Text } from "../../component/Text/Text";
 import { Icon } from "../../component/Icons/Icon";
+import { ModalWrapper } from "../../component/Layout/ModalWrapper";
 
 export const CreateTask = observer(() => {
   const store = useStorage().primaryUI;
@@ -94,12 +95,23 @@ export const CreateTask = observer(() => {
 
         <View className="flex-1 items-center justify-center">
           <View className="w-[80%] items-center justify-center">
-            <Modal
+            <ModalWrapper
               isVisible={store.isModalOpen}
               onBackdropPress={() => store.toggleModal(false)}
-              animationIn={"slideInUp"}
             >
-              <View className="p-4 h-[26%] bg-black-100 rounded-2xl">
+              <View className="p-4 h-[65%] bg-black-100 rounded-2xl">
+                <View className="flex-row justify-center items-center">
+                  <Text>{translate("add_title_and_description")}</Text>
+                  <TouchableOpacity
+                    onPress={() => store.toggleModal(false)}
+                    className="
+                    absolute
+                    right-0"
+                  >
+                    <Icon color={"white"} size={25} name={"close"} />
+                  </TouchableOpacity>
+                </View>
+
                 <Input
                   titleLabel={translate("title")}
                   name={"title"}
@@ -135,7 +147,7 @@ export const CreateTask = observer(() => {
                   </TouchableOpacity>
                 </View>
               </View>
-            </Modal>
+            </ModalWrapper>
           </View>
         </View>
       </View>

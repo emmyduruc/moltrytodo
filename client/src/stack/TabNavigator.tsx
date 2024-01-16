@@ -24,18 +24,10 @@ const HistoryScreen = () => {
   );
 };
 
-const CartScreen = () => {
+const FocusScreen = () => {
   return (
     <View style={styles.container}>
       <Text className="text-black text-sm">CartScreen</Text>
-    </View>
-  );
-};
-
-const AddTodoScreen = () => {
-  return (
-    <View style={styles.container}>
-      <Text className="text-black text-sm">AddTodoScreen</Text>
     </View>
   );
 };
@@ -67,8 +59,8 @@ export const BottomTabNavigator = () => {
             iconName = focused ? "ios-person" : "ios-person-outline";
           } else if (route.name === "History") {
             iconName = focused ? "ios-images" : "ios-images-outline";
-          } else if (route.name === "Cart") {
-            iconName = focused ? "ios-cart" : "ios-cart-outline";
+          } else if (route.name === "Focus") {
+            iconName = focused ? "timer" : "timer-outline";
           } else if (route.name === "CreateTask") {
             return (
               <TouchableOpacity
@@ -132,7 +124,7 @@ export const BottomTabNavigator = () => {
       <TabNavigator.Screen name="Home" component={HomeScreen} />
       <TabNavigator.Screen name="History" component={HistoryScreen} />
       <TabNavigator.Screen name="CreateTask" component={CreateTask} />
-      <TabNavigator.Screen name="Cart" component={CartScreen} />
+      <TabNavigator.Screen name="Focus" component={FocusScreen} />
       <TabNavigator.Screen name="Profile" component={ProfileScreen} />
     </TabNavigator.Navigator>
   );
