@@ -2,6 +2,7 @@ import React from "react";
 import {
   KeyboardAvoidingView,
   Platform,
+  SafeAreaView,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -29,12 +30,17 @@ export const ModalWrapper = ({
       onBackdropPress={onBackdropPress}
       animationIn={"slideInUp"}
       {...props}
+      style={{
+        justifyContent: "flex-end",
+        margin: 0,
+        marginTop: 100,
+      }}
     >
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={10}
       >
-        <View className="p-4 h-[69%] bg-black-100 rounded-2xl">
+        <View className="p-4 h-[100%] justify-center bg-black-100 rounded-2xl">
           <View className="flex-row justify-center items-center">
             <Text>{modalHeaderText}</Text>
             <TouchableOpacity

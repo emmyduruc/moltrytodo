@@ -57,8 +57,8 @@ export const BottomTabNavigator = () => {
             iconName = focused ? "ios-home" : "ios-home-outline";
           } else if (route.name === "Profile") {
             iconName = focused ? "ios-person" : "ios-person-outline";
-          } else if (route.name === "History") {
-            iconName = focused ? "ios-images" : "ios-images-outline";
+          } else if (route.name === "Calender") {
+            iconName = focused ? "calendar" : "calendar-outline";
           } else if (route.name === "Focus") {
             iconName = focused ? "timer" : "timer-outline";
           } else if (route.name === "CreateTask") {
@@ -122,7 +122,7 @@ export const BottomTabNavigator = () => {
       })}
     >
       <TabNavigator.Screen name="Home" component={HomeScreen} />
-      <TabNavigator.Screen name="History" component={HistoryScreen} />
+      <TabNavigator.Screen name="Calender" component={HistoryScreen} />
       <TabNavigator.Screen name="CreateTask" component={CreateTask} />
       <TabNavigator.Screen name="Focus" component={FocusScreen} />
       <TabNavigator.Screen name="Profile" component={ProfileScreen} />

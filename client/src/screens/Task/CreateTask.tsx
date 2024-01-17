@@ -102,43 +102,41 @@ export const CreateTask = observer(() => {
               onBackdropPress={() => store.toggleModal(false)}
               modalHeaderText={translate("set_title_and_description")}
             >
-              <View>
-                <>
-                  <Input
-                    titleLabel={translate("title")}
-                    name={"title"}
-                    formikFieldName={"title"}
-                    autoFocus={true}
-                    formik={formik}
-                    className="flex-1"
-                    validationSchema={taskValidationSchema}
-                  />
-                  <Input
-                    titleLabel={translate("description")}
-                    name={"description"}
-                    formikFieldName={"description"}
-                    formik={formik}
-                    validationSchema={taskValidationSchema}
-                  />
-                  <View className="flex-1 pt-4 flex-row justify-between">
-                    <View className="flex-row w-[40%] justify-between">
-                      <Timer />
-                      <Tag />
-                      <Flag />
-                    </View>
-                    <TouchableOpacity
-                      onPress={isFormValid ? onSubmitPress : () => {}}
-                      className=""
-                    >
-                      {isFormValid ? (
-                        <Send />
-                      ) : (
-                        <Send fill={"rgba(255, 255, 255, 0.5)"} />
-                      )}
-                    </TouchableOpacity>
+              <>
+                <Input
+                  titleLabel={translate("title")}
+                  name={"title"}
+                  formikFieldName={"title"}
+                  autoFocus={true}
+                  formik={formik}
+                  className="flex-1"
+                  validationSchema={taskValidationSchema}
+                />
+                <Input
+                  titleLabel={translate("description")}
+                  name={"description"}
+                  formikFieldName={"description"}
+                  formik={formik}
+                  validationSchema={taskValidationSchema}
+                />
+                <View className="flex-1 pt-4 flex-row justify-between">
+                  <View className="flex-row w-[40%] justify-between">
+                    <Timer />
+                    <Tag />
+                    <Flag />
                   </View>
-                </>
-              </View>
+                  <TouchableOpacity
+                    onPress={isFormValid ? onSubmitPress : () => {}}
+                    className=""
+                  >
+                    {isFormValid ? (
+                      <Send />
+                    ) : (
+                      <Send fill={"rgba(255, 255, 255, 0.5)"} />
+                    )}
+                  </TouchableOpacity>
+                </View>
+              </>
             </ModalWrapper>
 
             <ModalWrapper

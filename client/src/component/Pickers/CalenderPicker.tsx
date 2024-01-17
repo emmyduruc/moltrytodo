@@ -59,3 +59,6 @@ export const CalenderPicker = () => {
     />
   );
 };
+//https://www.npmjs.com/package/react-native-calendar-strip
+//https://www.youtube.com/watch?v=X3qdu6JuLxs&t=28s
+//https://www.npmjs.com/package/react-native-calendar-timetable/v/0.4.8
