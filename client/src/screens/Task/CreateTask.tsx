@@ -66,7 +66,6 @@ export const CreateTask = observer(() => {
       onPress: () => {},
     },
   ];
-  console.log("store......", store.isCalendarOpen);
   return (
     <GradientLayout>
       <View className="flex-1 justify-center mt-8">
@@ -101,20 +100,10 @@ export const CreateTask = observer(() => {
             <ModalWrapper
               isVisible={store.isModalOpen}
               onBackdropPress={() => store.toggleModal(false)}
+              modalHeaderText={translate("set_title_and_description")}
             >
               <View>
                 <>
-                  <View className="flex-row justify-center items-center">
-                    <Text>{translate("add_title_and_description")}</Text>
-                    <TouchableOpacity
-                      onPress={() => store.toggleModal(false)}
-                      className="
-                    absolute
-                    right-0"
-                    >
-                      <Icon color={"white"} size={25} name={"close"} />
-                    </TouchableOpacity>
-                  </View>
                   <Input
                     titleLabel={translate("title")}
                     name={"title"}
@@ -155,13 +144,9 @@ export const CreateTask = observer(() => {
             <ModalWrapper
               isVisible={store.isCalendarOpen}
               onBackdropPress={() => store.toggleCalendar(false)}
+              modalHeaderText={translate("set_due_date")}
             >
-              <>
-                <CalenderPicker
-                  openStartDatePicker={store.isCalendarOpen}
-                  setOpenStartDatePicker={() => store.toggleCalendar(true)}
-                />
-              </>
+              <CalenderPicker />
             </ModalWrapper>
           </View>
         </View>

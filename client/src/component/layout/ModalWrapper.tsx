@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import { Text } from "../Text/Text";
-import { translate } from "../../services/translation.service";
 import { Icon } from "../Icons/Icon";
 import { useStorage } from "../../store";
 
@@ -25,7 +24,6 @@ export const ModalWrapper = ({
   modalHeaderText,
   ...props
 }: ModalWrapperProps) => {
-  const store = useStorage().primaryUI;
   return (
     <Modal
       isVisible={isVisible}
@@ -39,9 +37,9 @@ export const ModalWrapper = ({
       >
         <View className="p-4 h-[65%] bg-black-100 rounded-2xl">
           <View className="flex-row justify-center items-center">
-            <Text>{translate("set_due_date")}</Text>
+            <Text>{modalHeaderText}</Text>
             <TouchableOpacity
-              onPress={() => store.toggleCalendar(false)}
+              onPress={onBackdropPress}
               className="
                     absolute
                     right-0"
@@ -55,4 +53,3 @@ export const ModalWrapper = ({
     </Modal>
   );
 };
-//className="p-4 h-[65%] bg-black-100 rounded-2xl"
