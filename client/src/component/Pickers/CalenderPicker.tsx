@@ -36,24 +36,26 @@ export const CalenderPicker = () => {
   };
   console.log("selectedStartDate", selectedStartDate);
   return (
-    <SafeAreaView className="flex-1">
-      <DatePicker
-        mode="calendar"
-        minimumDate={startDate}
-        selected={startedDate}
-        onDateChanged={handleChangeStartDate}
-        onSelectedChange={(date) => {
-          handleDateChange(date);
-        }}
-        options={{
-          backgroundColor: "transparent",
-          textHeaderColor: "#469ab6",
-          textDefaultColor: colors.purple[100],
-          mainColor: "#469ab6",
-          textSecondaryColor: colors.purple[100],
-          borderColor: "rgba(122, 146, 165, 0.1)",
-        }}
-      />
-    </SafeAreaView>
+    <DatePicker
+      mode="calendar"
+      minimumDate={startDate}
+      selected={startedDate}
+      onDateChanged={handleChangeStartDate}
+      onSelectedChange={(date) => {
+        handleDateChange(date);
+      }}
+      options={{
+        backgroundColor: colors.black[100],
+        textHeaderColor: "#469ab6",
+        textDefaultColor: colors.purple[100],
+        mainColor: "#469ab6",
+        textSecondaryColor: colors.purple[100],
+        borderColor: "rgba(122, 146, 165, 0.1)",
+      }}
+      style={{
+        borderRadius: 20,
+        flex: 1,
+      }}
+    />
   );
 };

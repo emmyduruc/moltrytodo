@@ -8,7 +8,6 @@ import {
 import Modal from "react-native-modal";
 import { Text } from "../Text/Text";
 import { Icon } from "../Icons/Icon";
-import { useStorage } from "../../store";
 
 interface ModalWrapperProps {
   isVisible: boolean;
@@ -35,7 +34,7 @@ export const ModalWrapper = ({
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={10}
       >
-        <View className="p-4 h-[65%] bg-black-100 rounded-2xl">
+        <View className="p-4 h-[69%] bg-black-100 rounded-2xl">
           <View className="flex-row justify-center items-center">
             <Text>{modalHeaderText}</Text>
             <TouchableOpacity
