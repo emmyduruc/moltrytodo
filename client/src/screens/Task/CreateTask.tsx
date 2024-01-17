@@ -14,6 +14,7 @@ import { Flag } from "../../component/Icons/Flag";
 import { Text } from "../../component/Text/Text";
 import { Icon } from "../../component/Icons/Icon";
 import { ModalWrapper } from "../../component/Layout/ModalWrapper";
+import { CalenderPicker } from "../../component/Pickers/CalenderPicker";
 
 export const CreateTask = observer(() => {
   const store = useStorage().primaryUI;
@@ -48,7 +49,9 @@ export const CreateTask = observer(() => {
       id: 3,
       title: translate("set_due_date"),
       name: "timer",
-      onPress: () => {},
+      onPress: () => {
+        store.toggleCalendar(true);
+      },
     },
     {
       id: 4,
@@ -63,7 +66,7 @@ export const CreateTask = observer(() => {
       onPress: () => {},
     },
   ];
-
+  console.log("store......", store.isCalendarOpen);
   return (
     <GradientLayout>
       <View className="flex-1 justify-center mt-8">
@@ -99,54 +102,66 @@ export const CreateTask = observer(() => {
               isVisible={store.isModalOpen}
               onBackdropPress={() => store.toggleModal(false)}
             >
-              <View className="p-4 h-[65%] bg-black-100 rounded-2xl">
-                <View className="flex-row justify-center items-center">
-                  <Text>{translate("add_title_and_description")}</Text>
-                  <TouchableOpacity
-                    onPress={() => store.toggleModal(false)}
-                    className="
+              <View>
+                <>
+                  <View className="flex-row justify-center items-center">
+                    <Text>{translate("add_title_and_description")}</Text>
+                    <TouchableOpacity
+                      onPress={() => store.toggleModal(false)}
+                      className="
                     absolute
                     right-0"
-                  >
-                    <Icon color={"white"} size={25} name={"close"} />
-                  </TouchableOpacity>
-                </View>
-
-                <Input
-                  titleLabel={translate("title")}
-                  name={"title"}
-                  formikFieldName={"title"}
-                  autoFocus={true}
-                  formik={formik}
-                  className="flex-1"
-                  validationSchema={taskValidationSchema}
-                />
-
-                <Input
-                  titleLabel={translate("description")}
-                  name={"description"}
-                  formikFieldName={"description"}
-                  formik={formik}
-                  validationSchema={taskValidationSchema}
-                />
-                <View className="flex-1 pt-4 flex-row justify-between">
-                  <View className="flex-row w-[40%] justify-between">
-                    <Timer />
-                    <Tag />
-                    <Flag />
+                    >
+                      <Icon color={"white"} size={25} name={"close"} />
+                    </TouchableOpacity>
                   </View>
-                  <TouchableOpacity
-                    onPress={isFormValid ? onSubmitPress : () => {}}
-                    className=""
-                  >
-                    {isFormValid ? (
-                      <Send />
-                    ) : (
-                      <Send fill={"rgba(255, 255, 255, 0.5)"} />
-                    )}
-                  </TouchableOpacity>
-                </View>
+                  <Input
+                    titleLabel={translate("title")}
+                    name={"title"}
+                    formikFieldName={"title"}
+                    autoFocus={true}
+                    formik={formik}
+                    className="flex-1"
+                    validationSchema={taskValidationSchema}
+                  />
+                  <Input
+                    titleLabel={translate("description")}
+                    name={"description"}
+                    formikFieldName={"description"}
+                    formik={formik}
+                    validationSchema={taskValidationSchema}
+                  />
+                  <View className="flex-1 pt-4 flex-row justify-between">
+                    <View className="flex-row w-[40%] justify-between">
+                      <Timer />
+                      <Tag />
+                      <Flag />
+                    </View>
+                    <TouchableOpacity
+                      onPress={isFormValid ? onSubmitPress : () => {}}
+                      className=""
+                    >
+                      {isFormValid ? (
+                        <Send />
+                      ) : (
+                        <Send fill={"rgba(255, 255, 255, 0.5)"} />
+                      )}
+                    </TouchableOpacity>
+                  </View>
+                </>
               </View>
+            </ModalWrapper>
+
+            <ModalWrapper
+              isVisible={store.isCalendarOpen}
+              onBackdropPress={() => store.toggleCalendar(false)}
+            >
+              <>
+                <CalenderPicker
+                  openStartDatePicker={store.isCalendarOpen}
+                  setOpenStartDatePicker={() => store.toggleCalendar(true)}
+                />
+              </>
             </ModalWrapper>
           </View>
         </View>
