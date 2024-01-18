@@ -63,7 +63,51 @@ export const CreateTask = observer(() => {
       id: 5,
       title: translate("set_priority"),
       name: "flag",
-      onPress: () => {},
+      onPress: () => {
+        store.togglePriority(true);
+      },
+    },
+  ];
+  const priorityData = [
+    {
+      level: 1,
+      color: "red",
+    },
+    {
+      level: 2,
+      color: "yellow",
+    },
+    {
+      level: 3,
+      color: "green",
+    },
+    {
+      level: 4,
+      color: "blue",
+    },
+    {
+      level: 5,
+      color: "purple",
+    },
+    {
+      level: 6,
+      color: "pink",
+    },
+    {
+      level: 7,
+      color: "orange",
+    },
+    {
+      level: 8,
+      color: "gray",
+    },
+    {
+      level: 9,
+      color: "black",
+    },
+    {
+      level: 10,
+      color: "white",
     },
   ];
   return (
@@ -145,6 +189,35 @@ export const CreateTask = observer(() => {
               modalHeaderText={translate("set_due_date")}
             >
               <CalenderPicker />
+            </ModalWrapper>
+
+            <ModalWrapper
+              isVisible={store.isPriorityChosen}
+              onBackdropPress={() => store.togglePriority(false)}
+              modalHeaderText={translate("set_priority")}
+            >
+              <View className="flex-row flex-1 justify-between grow">
+                <View className="flex-row justify-between grow">
+                  {priorityData.map((item) => (
+                    <TouchableOpacity className="grow flex">
+                      <View className="h-20 bg-black w-20 items-center justify-center rounded-full mx-1">
+                        <Flag fill={item.color} />
+                        <Text className="text-white text-xs">{item.level}</Text>
+                      </View>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+                <TouchableOpacity
+                  onPress={isFormValid ? onSubmitPress : () => {}}
+                  className=""
+                >
+                  {isFormValid ? (
+                    <Send />
+                  ) : (
+                    <Send fill={"rgba(255, 255, 255, 0.5)"} />
+                  )}
+                </TouchableOpacity>
+              </View>
             </ModalWrapper>
           </View>
         </View>

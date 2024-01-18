@@ -8,6 +8,7 @@ export const createPrimaryUIStore = (parent: IParentStore) => {
     //   observables
     isModalOpen: false,
     isCalendarOpen: false,
+    isPriorityChosen: false,
 
     //   Actions
     toggleModal: (state: boolean) => {
@@ -18,6 +19,11 @@ export const createPrimaryUIStore = (parent: IParentStore) => {
     toggleCalendar: (state: boolean) => {
       runInAction(() => {
         store.isCalendarOpen = state;
+      });
+    },
+    togglePriority: (state: boolean) => {
+      runInAction(() => {
+        store.isPriorityChosen = state;
       });
     },
   });
