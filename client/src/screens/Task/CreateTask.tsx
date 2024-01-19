@@ -15,6 +15,7 @@ import { Text } from "../../component/Text/Text";
 import { Icon } from "../../component/Icons/Icon";
 import { ModalWrapper } from "../../component/Layout/ModalWrapper";
 import { CalenderPicker } from "../../component/Pickers/CalenderPicker";
+import { SubmitButton } from "../../component/Button/SubmitButton";
 
 export const CreateTask = observer(() => {
   const store = useStorage().primaryUI;
@@ -103,7 +104,7 @@ export const CreateTask = observer(() => {
     },
     {
       level: 9,
-      color: "black",
+      color: "#D4AF37",
     },
     {
       level: 10,
@@ -180,6 +181,9 @@ export const CreateTask = observer(() => {
                     )}
                   </TouchableOpacity>
                 </View>
+                <SubmitButton className="mb-8" onPress={() => onSubmitPress()}>
+                  {translate("save")}
+                </SubmitButton>
               </>
             </ModalWrapper>
 
@@ -189,34 +193,40 @@ export const CreateTask = observer(() => {
               modalHeaderText={translate("set_due_date")}
             >
               <CalenderPicker />
+
+              <SubmitButton
+                className="mb-8"
+                onPress={() => store.toggleCalendar(false)}
+              >
+                {translate("save")}
+              </SubmitButton>
             </ModalWrapper>
 
             <ModalWrapper
               isVisible={store.isPriorityChosen}
               onBackdropPress={() => store.togglePriority(false)}
               modalHeaderText={translate("set_priority")}
+              subHeaderText={translate(
+                "set_priority_hint_helps_you_to_layout_your_tasks_according_to_their_importance"
+              )}
             >
-              <View className="flex-row flex-1 justify-between grow">
-                <View className="flex-row justify-between grow">
+              <View className="flex-col justify-around grow">
+                <View className="flex-row justify-between flex-wrap w-full grow">
                   {priorityData.map((item) => (
                     <TouchableOpacity className="grow flex">
-                      <View className="h-20 bg-black w-20 items-center justify-center rounded-full mx-1">
+                      <View className="h-20 bg-black w-20 m-2 items-center justify-center rounded-full mx-1">
                         <Flag fill={item.color} />
                         <Text className="text-white text-xs">{item.level}</Text>
                       </View>
                     </TouchableOpacity>
                   ))}
                 </View>
-                <TouchableOpacity
-                  onPress={isFormValid ? onSubmitPress : () => {}}
-                  className=""
+                <SubmitButton
+                  className="mb-8"
+                  onPress={() => store.togglePriority(false)}
                 >
-                  {isFormValid ? (
-                    <Send />
-                  ) : (
-                    <Send fill={"rgba(255, 255, 255, 0.5)"} />
-                  )}
-                </TouchableOpacity>
+                  {translate("save")}
+                </SubmitButton>
               </View>
             </ModalWrapper>
           </View>

@@ -15,6 +15,7 @@ interface ModalWrapperProps {
   onBackdropPress: () => void;
   children: React.ReactNode;
   modalHeaderText?: string;
+  subHeaderText?: string;
 }
 
 export const ModalWrapper = ({
@@ -22,6 +23,7 @@ export const ModalWrapper = ({
   onBackdropPress,
   children,
   modalHeaderText,
+  subHeaderText,
   ...props
 }: ModalWrapperProps) => {
   return (
@@ -42,12 +44,13 @@ export const ModalWrapper = ({
       >
         <View className="p-4 h-[100%] justify-center bg-black-100 rounded-2xl">
           <View className="flex-row justify-center items-center">
-            <Text>{modalHeaderText}</Text>
+            <View className="flex-col">
+              <Text className="my-2 text-2xl font-bold">{modalHeaderText}</Text>
+              <Text className="my-2">{subHeaderText}</Text>
+            </View>
             <TouchableOpacity
               onPress={onBackdropPress}
-              className="
-                    absolute
-                    right-0"
+              className="absolute right-0 top-0"
             >
               <Icon color={"white"} size={25} name={"close"} />
             </TouchableOpacity>
