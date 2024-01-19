@@ -111,6 +111,58 @@ export const CreateTask = observer(() => {
       color: "white",
     },
   ];
+
+  const categoryData = [
+    {
+      name: "Work",
+      color: "red",
+    },
+    {
+      name: "Study",
+      color: "yellow",
+    },
+    {
+      name: "Health",
+      color: "green",
+    },
+    {
+      name: "Family",
+      color: "blue",
+    },
+    {
+      name: "Friends",
+      color: "purple",
+    },
+    {
+      name: "Personal",
+      color: "pink",
+    },
+    {
+      name: "Hobby",
+      color: "orange",
+    },
+    {
+      name: "Travel",
+      color: "#D4AF37",
+    },
+    {
+      name: "Shopping",
+      color: "white",
+    },
+    {
+      name: "Other",
+      color: "gray",
+    },
+    {
+      name: "Movies",
+      color: "red",
+    },
+    {
+      name: "Add new",
+      color: "yellow",
+    },
+  ];
+
   return (
     <GradientLayout>
       <View className="flex-1 justify-center mt-8">
