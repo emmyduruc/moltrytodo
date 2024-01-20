@@ -1,5 +1,6 @@
 import React from "react";
 import { Path, Svg } from "react-native-svg";
+import { colors } from "../../utils/colors";
 
 interface TimerProps {
   fill?: string;
@@ -8,7 +9,7 @@ interface TimerProps {
 }
 
 export const Timer = ({
-  fill = "#8687E7",
+  fill = colors.purple[300],
   height = 24,
   width = 24,
 }: TimerProps) => {

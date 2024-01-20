@@ -1,5 +1,6 @@
 import React from "react";
 import { Path, Svg } from "react-native-svg";
+import { colors } from "../../utils/colors";
 
 interface TagProps {
   fill?: string;
@@ -8,7 +9,7 @@ interface TagProps {
 }
 
 export const Tag = ({
-  fill = "#8687E7",
+  fill = colors.purple[300],
   height = 24,
   width = 24,
 }: TagProps) => {

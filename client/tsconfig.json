@@ -3,6 +3,9 @@
   "compilerOptions": {
     "strict": true,
     "baseUrl": "./",
+    "paths": {
+      "*": ["src/*"]
+    },
     "esModuleInterop": true
   },
   "include": ["src/**/*", "./nativewind.d.ts", "./declaration.d.ts"]
