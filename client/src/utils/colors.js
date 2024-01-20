@@ -1,4 +1,4 @@
-export const colors = {
+module.exports = {
   black: {
     100: "#363636",
     DEFAULT: "#000000",
@@ -7,6 +7,7 @@ export const colors = {
     100: "#8875FF",
     200: "#7B61FF",
     300: "#8687E7",
+    400: "#809CFF",
     DEFAULT: "#8875FF",
   },
   gray: {
@@ -20,15 +21,29 @@ export const colors = {
     300: "#21A300",
     400: "#00A372",
     500: "#00A3A3",
+    600: "#CCFF80",
+    700: "#80FFFF",
+    800: "#80FFD9",
+    900: "#80FFA3",
+    1000: "#80FFD1",
+    DEFAULT: "#00A32F",
   },
   orange: {
     100: "#A36200",
+    200: "#FF9680",
+    300: "#FFCC80",
+    DEFAULT: "#FFCC80",
   },
   pink: {
     100: "#A30089",
     200: "#A000A3",
+    300: "#FF80EB",
+    400: "#FC80FF",
+    DEFAULT: "#A30089",
   },
   blue: {
     100: "#0055A3",
+    200: "#80D1FF",
+    DEFAULT: "#0055A3",
   },
 };

@@ -9,6 +9,7 @@ export const createPrimaryUIStore = (parent: IParentStore) => {
     isModalOpen: false,
     isCalendarOpen: false,
     isPriorityChosen: false,
+    isCategoryChosen: false,
 
     //   Actions
     toggleModal: (state: boolean) => {
@@ -24,6 +25,12 @@ export const createPrimaryUIStore = (parent: IParentStore) => {
     togglePriority: (state: boolean) => {
       runInAction(() => {
         store.isPriorityChosen = state;
+      });
+    },
+
+    toggleCategory: (state: boolean) => {
+      runInAction(() => {
+        store.isCategoryChosen = state;
       });
     },
   });

@@ -43,7 +43,7 @@ export const ModalWrapper = ({
         keyboardVerticalOffset={10}
       >
         <View className="p-4 h-[100%] justify-center bg-black-100 rounded-2xl">
-          <View className="flex-row justify-center items-center">
+          <View className="flex-row my-4 justify-center items-center">
             <View className="flex-col">
               <Text className="my-2 text-2xl font-bold">{modalHeaderText}</Text>
               <Text className="my-2">{subHeaderText}</Text>

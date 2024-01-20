@@ -16,6 +16,16 @@ import { Icon } from "../../component/Icons/Icon";
 import { ModalWrapper } from "../../component/Layout/ModalWrapper";
 import { CalenderPicker } from "../../component/Pickers/CalenderPicker";
 import { SubmitButton } from "../../component/Button/SubmitButton";
+import { VideoCamera } from "../../component/Icons/VideoCamera";
+import { Megaphone } from "../../component/Icons/Megaphone";
+import { Add } from "../../component/Icons/Add";
+import { Console } from "../../component/Icons/Console";
+import { HeartBeat } from "../../component/Icons/Heartbeat";
+import { Mortalboard } from "../../component/Icons/Mortarboard";
+import { Music } from "../../component/Icons/Music";
+import { Bread } from "../../component/Icons/Bread";
+import { Design } from "../../component/Icons/Design";
+import colors from "../../utils/colors";
 
 export const CreateTask = observer(() => {
   const store = useStorage().primaryUI;
@@ -58,7 +68,9 @@ export const CreateTask = observer(() => {
       id: 4,
       title: translate("set_category"),
       name: "tag",
-      onPress: () => {},
+      onPress: () => {
+        store.toggleCategory(true);
+      },
     },
     {
       id: 5,
@@ -115,51 +127,43 @@ export const CreateTask = observer(() => {
   const categoryData = [
     {
       name: "Work",
-      color: "red",
+      icon: <VideoCamera />,
+      colors: [colors.green[600]],
     },
     {
-      name: "Study",
-      color: "yellow",
+      name: "Social",
+      icon: <Megaphone />,
+      colors: [colors.pink[300]],
     },
     {
       name: "Health",
-      color: "green",
+      icon: <HeartBeat />,
+      colors: [colors.green[900]],
     },
     {
-      name: "Family",
-      color: "blue",
+      name: "Education",
+      icon: <Mortalboard />,
+      colors: [colors.purple[400]],
     },
     {
-      name: "Friends",
-      color: "purple",
+      name: "Music",
+      icon: <Music />,
+      colors: [colors.pink[400]],
     },
     {
-      name: "Personal",
-      color: "pink",
+      name: "Food",
+      icon: <Bread />,
+      colors: [colors.green[600]],
     },
     {
-      name: "Hobby",
-      color: "orange",
+      name: "Design",
+      icon: <Design />,
+      colors: [colors.green[800]],
     },
     {
-      name: "Travel",
-      color: "#D4AF37",
-    },
-    {
-      name: "Shopping",
-      color: "white",
-    },
-    {
-      name: "Other",
-      color: "gray",
-    },
-    {
-      name: "Movies",
-      color: "red",
-    },
-    {
-      name: "Add new",
-      color: "yellow",
+      name: "Create new",
+      icon: <Add />,
+      colors: [colors.green[1000]],
     },
   ];
 
@@ -264,8 +268,8 @@ export const CreateTask = observer(() => {
             >
               <View className="flex-col justify-around grow">
                 <View className="flex-row justify-between flex-wrap w-full grow">
-                  {priorityData.map((item) => (
-                    <TouchableOpacity className="grow flex">
+                  {priorityData.map((item, index) => (
+                    <TouchableOpacity key={index} className="grow flex">
                       <View className="h-20 bg-black w-20 m-2 items-center justify-center rounded-full mx-1">
                         <Flag fill={item.color} />
                         <Text className="text-white text-xs">{item.level}</Text>
@@ -276,6 +280,36 @@ export const CreateTask = observer(() => {
                 <SubmitButton
                   className="mb-8"
                   onPress={() => store.togglePriority(false)}
+                >
+                  {translate("save")}
+                </SubmitButton>
+              </View>
+            </ModalWrapper>
+
+            <ModalWrapper
+              isVisible={store.isCategoryChosen}
+              onBackdropPress={() => store.toggleCategory(false)}
+              modalHeaderText={translate("set_category")}
+              subHeaderText={translate(
+                "set_category_hint_helps_you_to_layout_your_tasks_according_to_their_importance"
+              )}
+            >
+              <View className="flex-col justify-around grow">
+                <View className="flex-row justify-between flex-wrap w-full grow">
+                  {categoryData.map((item, index) => (
+                    <TouchableOpacity key={index} className="grow flex">
+                      <View
+                        className="h-20 w-20 m-2 my-4 items-center justify-center rounded-full mx-1"
+                        style={{ backgroundColor: item.colors[0] }}
+                      >
+                        {item.icon}
+                      </View>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+                <SubmitButton
+                  className="mb-8"
+                  onPress={() => store.toggleCategory(false)}
                 >
                   {translate("save")}
                 </SubmitButton>
