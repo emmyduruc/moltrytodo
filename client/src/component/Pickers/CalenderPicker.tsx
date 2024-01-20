@@ -11,7 +11,7 @@ import DatePicker from "react-native-modern-datepicker";
 import { getFormatedDate } from "react-native-modern-datepicker";
 import { Text } from "../Text/Text";
 import { translate } from "../../services/translation.service";
-import { colors } from "../../utils/colors";
+import colors from "../../utils/colors";
 
 type CalenderPickerProps = {
   openStartDatePicker: boolean;
