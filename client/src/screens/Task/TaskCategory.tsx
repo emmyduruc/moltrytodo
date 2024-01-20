@@ -5,6 +5,7 @@ import { categoryData } from "../../constants/createTask.constant";
 import { TouchableOpacity, View } from "react-native";
 import { translate } from "../../services/translation.service";
 import { useStorage } from "../../store";
+import { Text } from "../../component/Text/Text";
 
 export const TaskCategory = observer(() => {
   const store = useStorage().primaryUI;
@@ -28,6 +29,7 @@ export const TaskCategory = observer(() => {
               >
                 {item.icon}
               </View>
+              <Text className="text-white text-base">{item.name}</Text>
             </TouchableOpacity>
           ))}
         </View>

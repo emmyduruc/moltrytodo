@@ -9,7 +9,7 @@ interface ConsoleProps {
 
 export const Console = ({
   width = 32,
-  height = 17,
+  height = 26,
   fill = "none",
 }: ConsoleProps) => {
   return (

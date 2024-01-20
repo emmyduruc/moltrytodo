@@ -8,6 +8,7 @@ import { Mortalboard } from "../component/Icons/Mortarboard";
 import { Music } from "../component/Icons/Music";
 import { Bread } from "../component/Icons/Bread";
 import { Design } from "../component/Icons/Design";
+
 export const priorityData = [
   {
     level: 1,
@@ -98,7 +99,12 @@ export const categoryData = [
     colors: [colors.green[800]],
   },
   {
-    name: "Create new",
+    name: "Sport",
+    icon: <Console />,
+    colors: [colors.purple[400]],
+  },
+  {
+    name: "",
     icon: <Add />,
     colors: [colors.green[1000]],
   },

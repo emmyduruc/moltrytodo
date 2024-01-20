@@ -4,6 +4,8 @@ import { observer } from "mobx-react-lite";
 import { translate } from "../../services/translation.service";
 import { useStorage } from "../../store";
 import { SubmitButton } from "../../component/Button/SubmitButton";
+import React from "react";
+import { View } from "react-native";
 
 export const TaskDueDate = observer(() => {
   const store = useStorage().primaryUI;
@@ -14,14 +16,16 @@ export const TaskDueDate = observer(() => {
       onBackdropPress={() => store.toggleCalendar(false)}
       modalHeaderText={translate("set_due_date")}
     >
-      <CalenderPicker />
+      <View className="flex-col justify-between grow">
+        <CalenderPicker />
 
-      <SubmitButton
-        className="mb-8"
-        onPress={() => store.toggleCalendar(false)}
-      >
-        {translate("save")}
-      </SubmitButton>
+        <SubmitButton
+          className="mb-8"
+          onPress={() => store.toggleCalendar(false)}
+        >
+          {translate("save")}
+        </SubmitButton>
+      </View>
     </ModalWrapper>
   );
 });
