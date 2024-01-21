@@ -7,19 +7,12 @@ import { HomeScreen } from "../screens/Welcome/HomeScreen";
 import { useNavigation } from "@react-navigation/native";
 import { CreateTask } from "../screens/Task/CreateTask";
 import { useStorage } from "../store";
+import { Calender } from "../screens/Appointments/Calender";
 
 const ProfileScreen = () => {
   return (
     <View style={styles.container}>
       <Text>ProfileScreen</Text>
-    </View>
-  );
-};
-
-const HistoryScreen = () => {
-  return (
-    <View style={styles.container}>
-      <Text>HistoryScreen</Text>
     </View>
   );
 };
@@ -122,7 +115,7 @@ export const BottomTabNavigator = () => {
       })}
     >
       <TabNavigator.Screen name="Home" component={HomeScreen} />
-      <TabNavigator.Screen name="Calender" component={HistoryScreen} />
+      <TabNavigator.Screen name="Calender" component={Calender} />
       <TabNavigator.Screen name="CreateTask" component={CreateTask} />
       <TabNavigator.Screen name="Focus" component={FocusScreen} />
       <TabNavigator.Screen name="Profile" component={ProfileScreen} />

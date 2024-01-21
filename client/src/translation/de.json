@@ -32,6 +32,7 @@
   "no_tasks_found_click_on_the_plus_button_on_the_bottom_right_corner_of_the_screen_to_create_a_new_task": "Keine Aufgaben gefunden. Klicken Sie auf die Plus-Schaltfläche in der unteren rechten Ecke des Bildschirms, um eine neue Aufgabe zu erstellen.",
   "no_tasks_found": "Keine Aufgaben gefunden",
   "set_description": "Beschreibung festlegen",
+  "set_due_date_subheader_hint_helps_you_to_be_notified_when_your_task_is_due": "Der Untertitel \"Fälligkeitsdatum festlegen\" hilft Ihnen, benachrichtigt zu werden, wenn Ihre Aufgabe fällig ist.",
   "set_reminder_subheader_hint_helps_you_to_be_notified_when_your_task_is_due": "Der Erinnerungsunterhinweis hilft Ihnen, benachrichtigt zu werden, wenn Ihre Aufgabe fällig ist.",
   "register_with_us_to_build_your_own_routine_manage_your_tasks_and_be_more_productive": "Registrieren Sie sich bei uns, um Ihren eigenen Zeitplan zu erstellen, Ihre Aufgaben zu verwalten und produktiver zu sein.",
   "set_category_hint_helps_you_to_layout_your_tasks_according_to_their_importance": "Der Kategoriehinweis hilft Ihnen, Ihre Aufgaben nach ihrer Wichtigkeit zu gliedern.",
