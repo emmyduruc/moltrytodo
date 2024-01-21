@@ -9,6 +9,7 @@ import { TaskDueDate } from "./TaskDueDate";
 import { TaskTitle } from "./TaskTitle";
 import { TaskPriority } from "./TaskPriority";
 import { TaskCategory } from "./TaskCategory";
+import { TaskReminder } from "./TaskReminder";
 
 export const CreateTask = observer(() => {
   const store = useStorage().primaryUI;
@@ -32,6 +33,14 @@ export const CreateTask = observer(() => {
     },
     {
       id: 4,
+      title: translate("set_reminder"),
+      name: "alarm",
+      onPress: () => {
+        store.toggleTimePicker(true);
+      },
+    },
+    {
+      id: 5,
       title: translate("set_category"),
       name: "tag",
       onPress: () => {
@@ -39,7 +48,7 @@ export const CreateTask = observer(() => {
       },
     },
     {
-      id: 5,
+      id: 6,
       title: translate("set_priority"),
       name: "flag",
       onPress: () => {
@@ -83,6 +92,7 @@ export const CreateTask = observer(() => {
             <TaskDueDate />
             <TaskPriority />
             <TaskCategory />
+            <TaskReminder />
           </View>
         </View>
       </View>

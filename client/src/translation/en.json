@@ -20,6 +20,7 @@
   "set_priority": "Set priority",
   "priority": "Priority",
   "set_description": "Set description",
+  "set_reminder_subheader_hint_helps_you_to_be_notified_when_your_task_is_due": "Set reminder (subheader: hint: helps you to be notified when your task is due)",
   "set_title": "Set title",
   "edit": "Edit",
   "work": "Work",

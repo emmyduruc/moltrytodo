@@ -10,6 +10,7 @@ export const createPrimaryUIStore = (parent: IParentStore) => {
     isCalendarOpen: false,
     isPriorityChosen: false,
     isCategoryChosen: false,
+    isTimePickerVisible: false,
 
     //   Actions
     toggleModal: (state: boolean) => {
@@ -31,6 +32,11 @@ export const createPrimaryUIStore = (parent: IParentStore) => {
     toggleCategory: (state: boolean) => {
       runInAction(() => {
         store.isCategoryChosen = state;
+      });
+    },
+    toggleTimePicker: (state: boolean) => {
+      runInAction(() => {
+        store.isTimePickerVisible = state;
       });
     },
   });
