@@ -35,8 +35,8 @@ export const Calender = observer(() => {
           highlightDateNameStyle={{ color: "yellow" }}
           disabledDateNameStyle={{ color: "grey" }}
           disabledDateNumberStyle={{ color: "grey" }}
-          datesWhitelist={datesWhitelist}
-          datesBlacklist={datesBlacklist}
+          //   datesWhitelist={datesWhitelist}
+          //   datesBlacklist={datesBlacklist}
           iconLeft={require("../../../assets/img/left-arrow-black.png")}
           iconRight={require("../../../assets/img/right-arrow-black.png")}
           iconStyle={{

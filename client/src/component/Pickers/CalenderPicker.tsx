@@ -1,39 +1,23 @@
 import { View } from "react-native";
-
 import { useState } from "react";
 import DatePicker from "react-native-modern-datepicker";
-import { getFormatedDate } from "react-native-modern-datepicker";
 import colors from "../../utils/colors";
-
-type CalenderPickerProps = {
-  isTimePickerVisible: boolean;
-  toggleTimePicker: (value: boolean) => void;
-};
+import moment from "moment";
 
 export const CalenderPicker = () => {
-  const today = new Date();
-  const startDate = getFormatedDate(
-    today.setDate(today.getDate() + 1),
-    "YYYY/MM/DD"
-  );
-  const [selectedStartDate, setSelectedStartDate] = useState("");
-  const [startedDate, setStartedDate] = useState("12/12/2023");
+  const startDate = moment().format("YYYY/MM/DD");
 
-  function handleChangeStartDate(propDate) {
-    setStartedDate(propDate);
-  }
-  const handleDateChange = (date) => {
+  const [startedDate, setStartedDate] = useState(moment().format("YYYY/MM/DD"));
+
+  const handleDateChange = (date: string) => {
     setStartedDate(date);
-    setSelectedStartDate(date);
   };
-  console.log("selectedStartDate", selectedStartDate);
   return (
     <View className="justify-between flex-col">
       <DatePicker
         mode="calendar"
         minimumDate={startDate}
         selected={startedDate}
-        onDateChanged={handleChangeStartDate}
         onSelectedChange={(date) => {
           handleDateChange(date);
         }}
