@@ -13,7 +13,11 @@ export const createPrimaryUIStore = (parent: IParentStore) => {
     isCategoryChosen: false,
     isTimePickerVisible: false,
     taskData: null as null | Partial<ITask>,
-
+    taskDatas: [] as Partial<ITask>[],
+    //   computed
+    get isTaskDataEmpty() {
+      return !store.taskData;
+    },
     //   Actions
     toggleModal: (state: boolean) => {
       runInAction(() => {

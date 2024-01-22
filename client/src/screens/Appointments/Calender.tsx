@@ -4,14 +4,22 @@ import moment from "moment";
 import { Icon } from "../../component/Icons/Icon";
 import { GradientLayout } from "../../component/Layout/GradientLayout";
 import { View } from "react-native";
+import { useStorage } from "../../store";
 
 export const Calender = observer(() => {
-  let datesWhitelist = [
-    {
-      start: moment(),
-      end: moment().add(3, "days"), // total 4 days enabled
-    },
-  ];
+  const store = useStorage().primaryUI;
+  const taskData = store.taskData;
+  console.log("taskData...", taskData);
+  const dueDate = taskData?.due_date
+    ? moment(taskData.due_date, "YYYY/MM/DD")
+    : null;
+
+  // let datesWhitelist = [
+  //   {
+  //     start: moment(),
+  //     end: moment().add(3, "days"), // total 4 days enabled
+  //   },
+  // ];
   let datesBlacklist = [moment().add(1, "days")];
 
   return (
@@ -26,6 +34,7 @@ export const Calender = observer(() => {
             borderWidth: 1,
             borderHighlightColor: "white",
           }}
+          selectedDate={dueDate ? dueDate : moment()}
           style={{ height: 120, paddingTop: 10, paddingBottom: 10 }}
           calendarHeaderStyle={{ color: "white" }}
           calendarColor={"#7743CE"}
@@ -35,7 +44,7 @@ export const Calender = observer(() => {
           highlightDateNameStyle={{ color: "yellow" }}
           disabledDateNameStyle={{ color: "grey" }}
           disabledDateNumberStyle={{ color: "grey" }}
-          //   datesWhitelist={datesWhitelist}
+          //datesWhitelist={datesWhitelist}
           //   datesBlacklist={datesBlacklist}
           iconLeft={require("../../../assets/img/left-arrow-black.png")}
           iconRight={require("../../../assets/img/right-arrow-black.png")}

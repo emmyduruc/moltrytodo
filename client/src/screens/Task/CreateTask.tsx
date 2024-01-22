@@ -14,6 +14,8 @@ import { TaskReminder } from "./TaskReminder";
 export const CreateTask = observer(() => {
   const store = useStorage().primaryUI;
 
+  console.log("store.taskData.....", store.taskData);
+
   const createTaskUiRenderData = [
     {
       id: 1,
