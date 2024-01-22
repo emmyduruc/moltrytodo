@@ -26,7 +26,12 @@ export const TaskReminder = observer(() => {
           value={new Date()}
           mode={"datetime"}
           display="spinner"
-          onChange={() => {}}
+          onChange={(date) => {
+            store.setTaskData({
+              ...store.taskData,
+              reminder: date.nativeEvent.timestamp,
+            });
+          }}
           textColor={colors.purple[100]}
           style={{
             height: "70%",

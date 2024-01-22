@@ -22,11 +22,13 @@ export const TaskTitle = observer(() => {
   });
 
   const onSubmitPress = () => {
-    formik.handleSubmit();
-    console.log("formik", formik.values);
     if (formik.isValid) {
-      console.log("valid");
       store.toggleModal(true);
+      store.setTaskData({
+        ...store.taskData,
+        title: formik.values.title,
+        description: formik.values.description,
+      });
     }
   };
   const isFormValid = formik.isValid;
@@ -56,10 +58,7 @@ export const TaskTitle = observer(() => {
         />
         <View className="flex-1 pt-4 flex-col justify-between">
           <View className="flex-row w-[40%] justify-between">
-            <TouchableOpacity
-              onPress={isFormValid ? onSubmitPress : () => {}}
-              className=""
-            >
+            <TouchableOpacity onPress={isFormValid ? onSubmitPress : () => {}}>
               {isFormValid ? (
                 <Send />
               ) : (

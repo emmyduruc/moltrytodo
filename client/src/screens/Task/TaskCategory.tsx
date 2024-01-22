@@ -22,7 +22,16 @@ export const TaskCategory = observer(() => {
       <View className="flex-col justify-around grow">
         <View className="flex-row justify-between flex-wrap w-full grow">
           {categoryData.map((item, index) => (
-            <TouchableOpacity key={index} className="grow flex">
+            <TouchableOpacity
+              onPress={() => {
+                store.setTaskData({
+                  ...store.taskData,
+                  category: item.name,
+                });
+              }}
+              key={index}
+              className="grow flex"
+            >
               <View
                 className="h-20 w-20 m-2 my-4 items-center justify-center rounded-full mx-1"
                 style={{ backgroundColor: item.colors[0] }}

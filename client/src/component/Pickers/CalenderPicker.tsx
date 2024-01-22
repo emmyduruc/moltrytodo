@@ -3,14 +3,22 @@ import { useState } from "react";
 import DatePicker from "react-native-modern-datepicker";
 import colors from "../../utils/colors";
 import moment from "moment";
+import { useStorage } from "../../store";
+import { observer } from "mobx-react-lite";
 
-export const CalenderPicker = () => {
+export const CalenderPicker = observer(() => {
   const startDate = moment().format("YYYY/MM/DD");
+  const store = useStorage().primaryUI;
 
   const [startedDate, setStartedDate] = useState(moment().format("YYYY/MM/DD"));
 
   const handleDateChange = (date: string) => {
     setStartedDate(date);
+
+    store.setTaskData({
+      ...store.taskData,
+      due_date: date,
+    });
   };
   return (
     <View className="justify-between flex-col">
@@ -23,11 +31,10 @@ export const CalenderPicker = () => {
         }}
         options={{
           backgroundColor: colors.black[100],
-          textHeaderColor: "#469ab6",
+          textHeaderColor: colors.purple[100],
           textDefaultColor: colors.purple[100],
-          mainColor: "#469ab6",
+          mainColor: colors.green[400],
           textSecondaryColor: colors.purple[100],
-          borderColor: "rgba(122, 146, 165, 0.1)",
         }}
         style={{
           borderRadius: 20,
@@ -35,7 +42,4 @@ export const CalenderPicker = () => {
       />
     </View>
   );
-};
-//https://www.npmjs.com/package/react-native-calendar-strip
-//https://www.youtube.com/watch?v=X3qdu6JuLxs&t=28s
-//https://www.npmjs.com/package/react-native-calendar-timetable/v/0.4.8
+});

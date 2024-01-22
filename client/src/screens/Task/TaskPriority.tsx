@@ -23,7 +23,16 @@ export const TaskPriority = observer(() => {
       <View className="flex-col justify-around grow">
         <View className="flex-row justify-between flex-wrap w-full grow">
           {priorityData.map((item, index) => (
-            <TouchableOpacity key={index} className="grow flex">
+            <TouchableOpacity
+              key={index}
+              onPress={() =>
+                store.setTaskData({
+                  ...store.taskData,
+                  priority: item.level,
+                })
+              }
+              className="grow flex"
+            >
               <View
                 className="h-20 w-20 m-2 my-4 items-center justify-center rounded-full mx-1"
                 style={{ backgroundColor: item.backgroundColor }}
@@ -36,7 +45,9 @@ export const TaskPriority = observer(() => {
         </View>
         <SubmitButton
           className="mb-8"
-          onPress={() => store.togglePriority(false)}
+          onPress={() => {
+            store.togglePriority(false);
+          }}
         >
           {translate("save")}
         </SubmitButton>

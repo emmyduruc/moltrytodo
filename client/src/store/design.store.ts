@@ -1,5 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { IParentStore } from ".";
+import { ITask } from "../models/task.model";
 
 export type IPrimaryUiStore = ReturnType<typeof createPrimaryUIStore>;
 
@@ -11,6 +12,7 @@ export const createPrimaryUIStore = (parent: IParentStore) => {
     isPriorityChosen: false,
     isCategoryChosen: false,
     isTimePickerVisible: false,
+    taskData: null as null | Partial<ITask>,
 
     //   Actions
     toggleModal: (state: boolean) => {
@@ -37,6 +39,11 @@ export const createPrimaryUIStore = (parent: IParentStore) => {
     toggleTimePicker: (state: boolean) => {
       runInAction(() => {
         store.isTimePickerVisible = state;
+      });
+    },
+    setTaskData: (task: Partial<ITask>) => {
+      runInAction(() => {
+        store.taskData = task;
       });
     },
   });
