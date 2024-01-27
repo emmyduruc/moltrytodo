@@ -13,65 +13,23 @@ import { FlatList, View } from "react-native";
 import { Text } from "../../component/Text/Text";
 import { SettingTab } from "../../component/Button/SettingTab";
 import { GradientLayout } from "../../component/Layout/GradientLayout";
+import { profileData } from "../../constants/profileData.constant";
 
 export const Profile = observer(({ navigation }) => {
   const store = useStorage().primaryUI;
 
-  const profileData = [
-    {
-      header: translate("settings"),
-      name: translate("app_settings"),
-      icon: <Icon name="settings-outline" size={25} color={colors.white} />,
-      onPress: () => navigation.navigate("AppSettings"),
-    },
-    {
-      header: translate("account"),
-      name: translate("change_account_name"),
-      icon: <User />,
-      onPress: () => navigation.navigate("AppSettings"),
-    },
-    {
-      name: translate("change_account_password"),
-      icon: <Icon name="key-outline" size={25} />,
-      onPress: () => navigation.navigate("AppSettings"),
-    },
-    {
-      name: translate("change_account_image"),
-      icon: <Camera />,
-      onPress: () => navigation.navigate("AppSettings"),
-    },
-    {
-      header: translate("app_name"),
-      name: translate("about_us"),
-      icon: <Menu />,
-      onPress: () => navigation.navigate("AppSettings"),
-    },
-    {
-      name: translate("faq"),
-      icon: <InfoCircle />,
-      onPress: () => navigation.navigate("AppSettings"),
-    },
-    {
-      name: translate("help_and_support"),
-      icon: <Flash />,
-      onPress: () => navigation.navigate("AppSettings"),
-    },
-
-    {
-      name: translate("logout"),
-      icon: <Logout />,
-      onPress: () => navigation.navigate("AppSettings"),
-    },
-  ];
   return (
     <GradientLayout>
       <FlatList
-        data={profileData}
+        data={profileData(navigation)}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
-          <View>
+          <View className="mb-4">
             {item.header ? (
               <View>
-                <Text>{item.header}</Text>
+                <Text className="text-left text-gray-300 my-2">
+                  {item.header}
+                </Text>
                 <SettingTab
                   title={item.name}
                   icon={item.icon}
@@ -101,6 +59,37 @@ export const Profile = observer(({ navigation }) => {
             )}
           </View>
         )}
+        keyExtractor={(item) => item.name}
+        ListHeaderComponent={
+          <View className="flex-col mt-8 items-center justify-center">
+            <View className="flex-row items-center justify-center">
+              <Icon
+                name="person-circle-outline"
+                size={200}
+                color={colors.white}
+              />
+            </View>
+            <Text className="text-white text-left">John Doe</Text>
+
+            <View className="pt-4 pb-4 flex-1 flex-row justify-between items-center">
+              <View
+                className={`w-[40%] p-4 rounded-xl ${"border border-white bg-transparent"}`}
+              >
+                <Text className="text-red-500 text-base text-center">
+                  10 Task left
+                </Text>
+              </View>
+
+              <View
+                className={`p-4 ml-2 w-[40%] rounded-xl ${"border border-white bg-transparent"}`}
+              >
+                <Text className="text-green text-base text-center">
+                  1 Task done
+                </Text>
+              </View>
+            </View>
+          </View>
+        }
       />
     </GradientLayout>
   );
