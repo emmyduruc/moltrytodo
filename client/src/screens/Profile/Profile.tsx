@@ -1,12 +1,5 @@
-import { Camera } from "../../component/Icons/Camera";
-import { Flash } from "../../component/Icons/Flash";
 import { Icon } from "../../component/Icons/Icon";
-import { InfoCircle } from "../../component/Icons/InfoCircle";
-import { Logout } from "../../component/Icons/Logout";
-import { Menu } from "../../component/Icons/Menu";
-import { User } from "../../component/Icons/User";
 import { observer } from "mobx-react-lite";
-import { translate } from "../../services/translation.service";
 import { useStorage } from "../../store";
 import colors from "../../utils/colors";
 import { FlatList, View } from "react-native";
