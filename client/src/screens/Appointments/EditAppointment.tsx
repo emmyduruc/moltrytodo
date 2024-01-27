@@ -10,8 +10,15 @@ import { TaskReminder } from "../../screens/Task/TaskReminder";
 import { TaskCategory } from "../../screens/Task/TaskCategory";
 import { GradientLayout } from "../../component/Layout/GradientLayout";
 import { getCreatTaskIcon } from "../../utils/getCreatTaskIcon";
+import {
+  renderCategoryIcon,
+  renderPriorityIcon,
+} from "../../constants/createTask.constant";
+import { PriorityView } from "./PriorityView";
+import { CategoryView } from "./CategoryView";
+import { SubmitButton } from "../../component/Button/SubmitButton";
 
-export const EditAppointment = observer(() => {
+export const EditAppointment = observer(({ navigation }) => {
   const store = useStorage().primaryUI;
   const taskData = store.taskData;
 
@@ -70,15 +77,35 @@ export const EditAppointment = observer(() => {
           data={createTaskUiRenderData}
           renderItem={({ item }) => (
             <TouchableOpacity
-              className="flex-row justify-between items-center p-4 border-b border-gray-300"
+              className="flex-row justify-between items-center border-b border-gray-300"
               onPress={item.onPress}
             >
               <View className="flex-row items-center">
-                <Text>{item.title}:</Text>
                 {getCreatTaskIcon(item.name)}
+                <Text className="ml-2 text-lg font-semibold">
+                  {item.title}:
+                </Text>
               </View>
-              <TouchableOpacity className="h-10 p-4 bg-black-100">
-                <Text>{item.data ? item.data : translate("edit")}</Text>
+
+              <TouchableOpacity
+                onPress={item.onPress}
+                className="p-3 rounded-xl items-center flex-end"
+              >
+                {item.name === "tag" ? (
+                  <CategoryView
+                    category={renderCategoryIcon(taskData?.category ?? "")}
+                    taskData={taskData}
+                  />
+                ) : item.name === "flag" && taskData?.priority ? (
+                  <PriorityView
+                    priority={renderPriorityIcon(taskData?.priority ?? 0)}
+                    taskData={taskData}
+                  />
+                ) : (
+                  <View className="bg-black-100 p-2 rounded-xl">
+                    <Text>{item.data ? item.data : translate("edit")}</Text>
+                  </View>
+                )}
               </TouchableOpacity>
             </TouchableOpacity>
           )}
@@ -96,6 +123,13 @@ export const EditAppointment = observer(() => {
             </View>
           }
         />
+        <SubmitButton
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          {translate("submit")}
+        </SubmitButton>
 
         <View className="flex-1 items-center justify-center">
           <View className="w-[80%] items-center justify-center">

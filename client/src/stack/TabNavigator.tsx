@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { CreateTask } from "../screens/Task/CreateTask";
 import { useStorage } from "../store";
 import { Calender } from "../screens/Appointments/Calender";
+import { EditAppointment } from "../screens/Appointments/EditAppointment";
 
 const ProfileScreen = () => {
   return (

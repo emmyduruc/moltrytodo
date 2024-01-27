@@ -16,7 +16,7 @@ import { Flag } from "../../component/Icons/Flag";
 import { CategoryPriorityView } from "./CategoryPriorityVIew";
 import { ICategory, IPriority } from "../../models/task.model";
 
-export const Calender = observer(() => {
+export const Calender = observer(({ navigation }) => {
   const store = useStorage().primaryUI;
   const taskData = store.taskData;
   const [activeTodayButton, setActiveTodayButton] = React.useState(true);
@@ -100,7 +100,12 @@ export const Calender = observer(() => {
             </Text>
           </TouchableOpacity>
         </View>
-        <View className="flex-row items-center justify-between pl-3 pr-3 bg-black-100 my-2 rounded-xl">
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("EditAppointment");
+          }}
+          className="flex-row items-center justify-between pl-3 pr-3 bg-black-100 my-2 rounded-xl"
+        >
           <View
             className={`h-4 w-4 rounded-full ${
               activeCompletedButton ? "bg-green" : "bg-red-500"
@@ -116,7 +121,7 @@ export const Calender = observer(() => {
           </View>
 
           <CategoryPriorityView category={category} priority={priority} />
-        </View>
+        </TouchableOpacity>
       </View>
     </GradientLayout>
   );
