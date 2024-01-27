@@ -62,50 +62,67 @@ export const priorityData = [
   },
 ] as const;
 
+export const renderPriorityIcon = (level: number) => {
+  return priorityData.find((item) => item.level === level);
+};
+
 export const categoryData = [
   {
     name: "Work",
     icon: <VideoCamera />,
     colors: [colors.green[600]],
+    bg: "bg-green-200",
   },
   {
     name: "Social",
     icon: <Megaphone />,
     colors: [colors.pink[300]],
+    bg: "bg-green-200",
   },
   {
     name: "Health",
     icon: <HeartBeat />,
     colors: [colors.green[900]],
+    bg: "bg-green-200",
   },
   {
     name: "Education",
     icon: <Mortalboard />,
     colors: [colors.purple[400]],
+    bg: "bg-green-200",
   },
   {
     name: "Music",
     icon: <Music />,
     colors: [colors.pink[400]],
+    bg: "bg-green-200",
   },
   {
     name: "Food",
     icon: <Bread />,
     colors: [colors.green[600]],
+    bg: "bg-green-200",
   },
   {
     name: "Design",
     icon: <Design />,
     colors: [colors.green[800]],
+    bg: "bg-green-200",
   },
   {
     name: "Sport",
     icon: <Console />,
     colors: [colors.purple[400]],
+    bg: "bg-green-200",
   },
   {
     name: "",
     icon: <Add />,
     colors: [colors.green[1000]],
+    bg: "bg-green-200",
   },
 ] as const;
+
+export const renderCategoryIcon = (name: string) => {
+  return categoryData.find((item) => item.name === name);
+};

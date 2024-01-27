@@ -3,17 +3,29 @@ import CalendarStrip from "react-native-calendar-strip";
 import moment from "moment";
 import { Icon } from "../../component/Icons/Icon";
 import { GradientLayout } from "../../component/Layout/GradientLayout";
-import { View } from "react-native";
+import { Touchable, TouchableOpacity, View } from "react-native";
 import { useStorage } from "../../store";
+import { translate } from "../../services/translation.service";
+import React from "react";
+import { Text } from "../../component/Text/Text";
+import {
+  renderCategoryIcon,
+  renderPriorityIcon,
+} from "../../constants/createTask.constant";
+import { Flag } from "../../component/Icons/Flag";
 
 export const Calender = observer(() => {
   const store = useStorage().primaryUI;
   const taskData = store.taskData;
+  const [activeTodayButton, setActiveTodayButton] = React.useState(true);
+  const [activeCompletedButton, setActiveCompletedButton] =
+    React.useState(false);
   console.log("taskData...", taskData);
   const dueDate = taskData?.due_date
     ? moment(taskData.due_date, "YYYY/MM/DD")
     : null;
-
+  const category = renderCategoryIcon(taskData?.category);
+  const priority = renderPriorityIcon(taskData?.priority);
   // let datesWhitelist = [
   //   {
   //     start: moment(),
@@ -53,6 +65,77 @@ export const Calender = observer(() => {
           }}
           iconContainer={{ flex: 0.1 }}
         />
+        <View className="bg-black-100 pt-4 pb-4 flex-row justify-around items-center">
+          <TouchableOpacity
+            onPress={() => {
+              setActiveTodayButton(!activeTodayButton);
+              setActiveCompletedButton(!activeCompletedButton);
+            }}
+            className={`w-[40%] p-4 rounded-xl ${
+              activeTodayButton
+                ? "border border-white bg-transparent"
+                : "bg-purple-100"
+            }`}
+          >
+            <Text className="text-white text-base text-center">
+              {translate("today")}
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              setActiveCompletedButton(!activeCompletedButton);
+              setActiveTodayButton(!activeTodayButton);
+            }}
+            className={`p-4 w-[40%] rounded-xl ${
+              activeCompletedButton
+                ? "bg-purple-100"
+                : "border border-white bg-transparent"
+            }`}
+          >
+            <Text className="text-white text-base text-center">
+              {translate("completed")}
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View className="flex-row items-center justify-between pl-3 pr-3 bg-black-100 my-2 rounded-xl">
+          <View
+            className={`h-4 w-4 rounded-full ${
+              activeCompletedButton ? "bg-green" : "bg-red-500"
+            }`}
+          />
+          <View className="flex-col">
+            <Text className="text-white text-base text-start">
+              {taskData?.title}
+            </Text>
+            <Text className="text-white text-base text-start">
+              {taskData?.due_date}
+            </Text>
+          </View>
+
+          <View>
+            <TouchableOpacity
+              style={{ backgroundColor: category?.colors[0] }}
+              className={`pr-3 pl-3 m-2 my-4 h-10 items-center flex-row justify-around rounded-xl mx-1 `}
+            >
+              {category?.icon}
+              <Text className="text-black ml-2 text-base">
+                {category?.name}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={{ backgroundColor: priority?.backgroundColor }}
+              className={`pr-3 pl-3 m-2 my-4 h-10 items-center flex-row justify-around rounded-xl mx-1 `}
+            >
+              <Flag fill={priority?.color} />
+              <Text className="text-black text-base ml-4">
+                {priority?.level}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </GradientLayout>
   );

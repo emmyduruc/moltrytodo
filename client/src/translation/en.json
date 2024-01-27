@@ -9,6 +9,8 @@
   "cancel": "Cancel",
   "description": "Description",
   "title": "Title",
+  "today": "Today",
+  "completed": "Completed",
   "dueDate": "Due date",
   "set_due_date": "Set due date",
   "set_reminder": "Set reminder",
