@@ -8,15 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { CreateTask } from "../screens/Task/CreateTask";
 import { useStorage } from "../store";
 import { Calender } from "../screens/Appointments/Calender";
-import { EditAppointment } from "../screens/Appointments/EditAppointment";
-
-const ProfileScreen = () => {
-  return (
-    <View style={styles.container}>
-      <Text>ProfileScreen</Text>
-    </View>
-  );
-};
+import { Profile } from "../screens/Profile/Profile";
 
 const FocusScreen = () => {
   return (
@@ -119,7 +111,7 @@ export const BottomTabNavigator = () => {
       <TabNavigator.Screen name="Calender" component={Calender} />
       <TabNavigator.Screen name="CreateTask" component={CreateTask} />
       <TabNavigator.Screen name="Focus" component={FocusScreen} />
-      <TabNavigator.Screen name="Profile" component={ProfileScreen} />
+      <TabNavigator.Screen name="Profile" component={Profile} />
     </TabNavigator.Navigator>
   );
 };
