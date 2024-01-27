@@ -13,6 +13,8 @@ import {
   renderPriorityIcon,
 } from "../../constants/createTask.constant";
 import { Flag } from "../../component/Icons/Flag";
+import { CategoryPriorityView } from "./CategoryPriorityVIew";
+import { ICategory, IPriority } from "../../models/task.model";
 
 export const Calender = observer(() => {
   const store = useStorage().primaryUI;
@@ -24,8 +26,8 @@ export const Calender = observer(() => {
   const dueDate = taskData?.due_date
     ? moment(taskData.due_date, "YYYY/MM/DD")
     : null;
-  const category = renderCategoryIcon(taskData?.category);
-  const priority = renderPriorityIcon(taskData?.priority);
+  const category = renderCategoryIcon(taskData?.category ?? "") as ICategory;
+  const priority = renderPriorityIcon(taskData?.priority ?? 0) as IPriority;
   // let datesWhitelist = [
   //   {
   //     start: moment(),
@@ -73,8 +75,8 @@ export const Calender = observer(() => {
             }}
             className={`w-[40%] p-4 rounded-xl ${
               activeTodayButton
-                ? "border border-white bg-transparent"
-                : "bg-purple-100"
+                ? "bg-purple-100"
+                : "border border-white bg-transparent"
             }`}
           >
             <Text className="text-white text-base text-center">
@@ -113,28 +115,7 @@ export const Calender = observer(() => {
             </Text>
           </View>
 
-          <View>
-            <TouchableOpacity
-              style={{ backgroundColor: category?.colors[0] }}
-              className={`pr-3 pl-3 m-2 my-4 h-10 items-center flex-row justify-around rounded-xl mx-1 `}
-            >
-              {category?.icon}
-              <Text className="text-black ml-2 text-base">
-                {category?.name}
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity
-              style={{ backgroundColor: priority?.backgroundColor }}
-              className={`pr-3 pl-3 m-2 my-4 h-10 items-center flex-row justify-around rounded-xl mx-1 `}
-            >
-              <Flag fill={priority?.color} />
-              <Text className="text-black text-base ml-4">
-                {priority?.level}
-              </Text>
-            </TouchableOpacity>
-          </View>
+          <CategoryPriorityView category={category} priority={priority} />
         </View>
       </View>
     </GradientLayout>

@@ -20,3 +20,16 @@ export interface ISubtask {
   due_date: string;
   status: string;
 }
+
+export interface ICategory {
+  readonly name: string;
+  readonly icon: React.JSX.Element;
+  readonly colors: readonly [string];
+  readonly bg: string;
+}
+
+export interface IPriority {
+  readonly level: number;
+  readonly color: string;
+  readonly backgroundColor: string;
+}
