@@ -8,12 +8,21 @@ import { SettingTab } from "../../component/Button/SettingTab";
 import { GradientLayout } from "../../component/Layout/GradientLayout";
 import { profileData } from "../../constants/profileData.constant";
 import { SubmitButton } from "../../component/Button/SubmitButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
+import { PermissionService } from "../../services/permission.service";
 
 export const Profile = observer(({ navigation }) => {
   const store = useStorage().primaryUI;
-
+  useEffect(() => {
+    const seekPermission = async () => {
+      const token =
+        await PermissionService().registerForPushNotificationsAsync();
+      const newLocal = "token..........";
+      console.log(newLocal, token);
+    };
+    seekPermission();
+  }, []);
   return (
     <GradientLayout>
       <FlatList
