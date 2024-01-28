@@ -7,6 +7,9 @@ import { Text } from "../../component/Text/Text";
 import { SettingTab } from "../../component/Button/SettingTab";
 import { GradientLayout } from "../../component/Layout/GradientLayout";
 import { profileData } from "../../constants/profileData.constant";
+import { SubmitButton } from "../../component/Button/SubmitButton";
+import { useState } from "react";
+import * as ImagePicker from "expo-image-picker";
 
 export const Profile = observer(({ navigation }) => {
   const store = useStorage().primaryUI;
